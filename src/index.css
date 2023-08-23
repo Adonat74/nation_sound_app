@@ -2,6 +2,6 @@ body {
     margin: 0;
     font-family: Lobster, Arial, Helvetica, sans-serif;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     background: linear-gradient(300deg, rgba(183, 19, 19, 0.998), rgb(06, 82, 221) 80%) fixed;
 }

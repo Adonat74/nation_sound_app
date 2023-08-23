@@ -21,7 +21,7 @@ export default function App() {
 
       <Header toggleMenu={toggleMenu} />
               
-      {menuToggle ? <MenuDeroulant /> : null}
+      {menuToggle ? <MenuDeroulant toggleMenu={toggleMenu} /> : null}
 
       <Routes>
         {menuToggle ? null : <Route path="/" element={<Accueil />} />}
@@ -31,7 +31,7 @@ export default function App() {
         
       </Routes>
 
-
+      <div className="space"></div>
 
       {menuToggle ? null : <Footer />}
       
