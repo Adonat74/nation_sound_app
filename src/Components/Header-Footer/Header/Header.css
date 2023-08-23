@@ -1,0 +1,83 @@
+.header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    height: 110px;
+}
+
+
+.logo {
+    width: 120px;
+    height: auto;
+    margin-left: 10px;
+}
+
+/*--------------------------Ici commence le menu grand ecran*/
+.menu {
+    display: none;
+    margin-right: 30px;
+    font-size: 2rem;
+    margin-right: 20px;
+}
+
+
+
+/*---------------------------------Ici commence le menu burger déroulant*/
+
+.menuDeroulant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(300deg, rgba(183, 19, 19, 0.998), rgb(06, 82, 221) 80%) fixed;
+    color: #00FFB2;
+    font-size: 2.2rem;
+    padding: 0;
+    height: 100%;
+    text-decoration: none;
+}
+
+.menuDeroulant > a {
+    text-decoration: none;
+    color: #00FFB2;
+}
+
+
+
+.elementsDeroulant {
+    min-height: 80px;
+    height: 13vh;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border-bottom: 1px solid #00FFB2;
+}
+
+
+.burger {
+    width: 75px;
+    height: 75px;
+    margin-right: 25px;
+    margin-top: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+
+@media screen and (min-width: 768px) { 
+
+    .menu {
+        display: flex;
+        align-items: center;
+    }
+
+    .burger {
+        display: none;
+    }
+
+    .menuDeroulant {
+        display: none;
+    }
+}
