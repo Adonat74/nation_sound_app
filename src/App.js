@@ -1,7 +1,9 @@
 import Header from "./Components/Header-Footer/Header/Header";
 import MenuDeroulant from "./Components/Header-Footer/Header/MenuDeroulant";
 import Accueil from "./Components/Accueil/Accueil";
+import Programmation from "./Components/Programmation/Programmation";
 import Informations from "./Components/Info_FAQ/Informations";
+import Partenaires from "./Components/Partenaires/Partenaires";
 import FAQ from "./Components/Info_FAQ/FAQ";
 import Footer from "./Components/Header-Footer/Footer/Footer";
 import './App.css';
@@ -25,7 +27,9 @@ export default function App() {
 
       <Routes>
         {menuToggle ? null : <Route path="/" element={<Accueil />} />}
+        {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
         {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
+        {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
         {menuToggle ? null : <Route path="/FAQ" element={<FAQ />} />}
       
         

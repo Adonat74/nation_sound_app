@@ -1,0 +1,89 @@
+.programmation {
+    margin: 50px 30px;
+    height: 100%;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.programmation > h1 {
+    text-align: center;
+    text-shadow: rgb(27, 20, 100) 4px 4px;
+    font-size: 2.8rem;
+}
+
+.selectFlex {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.selectProg {
+    width: 150px;
+    font-size: 1.5rem;
+    font-family: Lobster;
+    background-color: rgba(69, 66, 216, 0.826);
+    color: white;
+    border: 3px solid #00FFB2;
+}
+
+.radioProgrammation {
+    display: none;
+}
+
+.radioContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 2rem;
+    text-shadow: rgb(27, 20, 100) 3px 3px;
+}
+
+.radioContainer > label {
+    cursor: pointer;
+}
+
+.daySelected {
+    color: #FE5F65;
+    font-size: 2.4rem;
+    text-decoration: underline;
+}
+
+.miniatureGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 50px 0;
+}
+
+.artistContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.miniature {
+    width: 150px;
+    border: 3px solid white;
+}
+
+.infoMiniature {
+    text-shadow: rgb(27, 20, 100) 3px 3px;
+}
+
+.infoMiniature > h2 {
+    font-size: 1.3rem;
+    margin: 7px 0 10px;
+}
+
+.infoMiniature > p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+
+
+
+
+
+
+
