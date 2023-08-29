@@ -4,6 +4,7 @@ import Accueil from "./Components/Accueil/Accueil";
 import Programmation from "./Components/Programmation/Programmation";
 import Informations from "./Components/Info_FAQ/Informations";
 import Partenaires from "./Components/Partenaires/Partenaires";
+import PageArtiste from "./Components/PageArtiste/PageArtiste";
 import FAQ from "./Components/Info_FAQ/FAQ";
 import Footer from "./Components/Header-Footer/Footer/Footer";
 import './App.css';
@@ -31,7 +32,7 @@ export default function App() {
         {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
         {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
         {menuToggle ? null : <Route path="/FAQ" element={<FAQ />} />}
-      
+        <Route path="/page-artiste/:artistName" element={<PageArtiste />} />
         
       </Routes>
 

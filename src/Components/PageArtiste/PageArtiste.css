@@ -1,0 +1,26 @@
+.pageArtist {
+    margin: 50px 30px;
+    height: 100%;
+    color: white;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.artistImage {
+    width: 300px;
+    border: 4px solid white;
+}
+
+.pageArtistTitle {
+    text-shadow: rgb(27, 20, 100) 4px 4px;
+}
+
+.pageArtistText > p {
+    font-size: 1.2rem;
+}
+
+.pageArtistContainer {
+    width: 300px;
+}

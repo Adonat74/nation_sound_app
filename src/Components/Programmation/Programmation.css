@@ -61,6 +61,11 @@
     margin-bottom: 20px;
 }
 
+.artistContainer > a {
+    text-decoration: none;
+    color: white;
+}
+
 .miniature {
     width: 150px;
     border: 3px solid white;
