@@ -5,16 +5,25 @@ import "./Programmation.css"
 export default function Programmation () {
 
 
-    const [testItem, setTestItem] = React.useState([1,1,1,1,1,1,1]);
     const [daySelected, setDaySelected] = React.useState("1");
     const [artistesData, setArtistesData] = React.useState([]);
+    const [scene, setScene] = React.useState("");
 
     function handleRadioChange (event) {
         console.log(daySelected)
         setDaySelected(() => {
             return event.target.value
         })
-    }
+    };
+
+    function handleChangeScene (event) {
+        console.log(scene)
+        setScene(() => {
+            return event.target.value
+        })
+    };
+
+    let sceneQuery = scene === "" ? "" : `&filter[field_scene]=${scene}`;
 
 
     
@@ -22,15 +31,12 @@ export default function Programmation () {
     
     React.useEffect(() => {
        
-        fetch(`http://drupal10/jsonapi/node/artistes?filter[field_jour]=${daySelected}`)
+        fetch(`http://drupal10/jsonapi/node/artistes?sort=field_heure&filter[field_jour]=${daySelected}${sceneQuery}`)
             .then(res => res.json())
             .then(data => setArtistesData(data.data))
-    }, [daySelected]);
+    }, [daySelected, scene]);
 
     console.log(artistesData);
-
-
-
 
 
 
@@ -42,7 +48,7 @@ export default function Programmation () {
                     <img className="miniature" src={`http://drupal10/sites/default/files/2023-08/${data.attributes.title}.jpg`} alt="Artiste"></img>
                     <div className="infoMiniature">
                         <h2>{data.attributes.title}</h2>
-                        <p>Scène numéro {data.attributes.field_scene}</p>
+                        <p>Scène {data.attributes.field_scene}</p>
                         <p>{data.attributes.field_heure}H</p>
                     </div>
                 </Link>
@@ -51,23 +57,23 @@ export default function Programmation () {
     });
 
 
-    
-
-    
-
-
 
 
     return(
         <div className="programmation">
             <h1>Programmation</h1>
             <div className="selectFlex">
-                <select className="selectProg">
-                    <option>Scène 1</option>
-                    <option>Scène 2</option>
-                    <option>Scène 3</option>
-                    <option>Scène 4</option>
-                    <option>Scène 5</option>
+                <select
+                value={scene}
+                onChange={handleChangeScene}
+                name="favColor"
+                className="selectProg">
+                    <option value="">Toutes les scènes</option>
+                    <option value="1">Scène 1</option>
+                    <option value="2">Scène 2</option>
+                    <option value="3">Scène 3</option>
+                    <option value="4">Scène 4</option>
+                    <option value="5">Scène 5</option>
                 </select>
             </div>
             
