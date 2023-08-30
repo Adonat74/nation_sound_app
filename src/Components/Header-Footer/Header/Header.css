@@ -57,21 +57,11 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    z-index: 1000;
 }
 
 
 @media screen and (min-width: 768px) { 
 
-    .menu {
-        display: flex;
-        align-items: center;
-    }
 
-    .burger {
-        display: none;
-    }
-
-    .menuDeroulant {
-        display: none;
-    }
 }
