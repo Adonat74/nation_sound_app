@@ -1,0 +1,67 @@
+.accueil {
+    margin: 50px 30px;
+    height: 100%;
+    color: white;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accueil > a {
+    text-decoration: none;
+    
+}
+
+.accueil > h1 {
+    font-size: 3rem;
+    text-shadow: rgb(27, 20, 100) 4px 4px;
+    margin: 0 0 30px;
+}
+
+.accueil > h2 {
+    font-size: 2rem;
+    text-shadow: rgb(27, 20, 100) 4px 4px;
+    margin: 40px 0 0;
+}
+
+.billetterieButton {
+    color: rgb(27, 20, 100);
+    font-family: Lobster, Arial, Helvetica, sans-serif;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(330deg, rgba(236, 140, 22, 0.998), rgb(183, 34, 197) 80%);
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.459) 6px 6px 25px;
+    margin: 20px 0;
+}
+
+.billetterieButton > img {
+    height: 40px;
+    margin-left: 20px;
+}
+
+.artistContainerAccueil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.artistContainerAccueil > a {
+    text-decoration: none;
+    color: white;
+}
+
+.miniatureGridAccueil {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 30px 0;
+    width: 100%;
+    height: 600px;
+    overflow: auto;
+}

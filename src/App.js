@@ -37,7 +37,7 @@ export default function App() {
         
       </Routes>
 
-      <div className="space"></div>
+      <div className={menuToggle ? null : "space"}></div>
 
       {menuToggle ? null : <Footer />}
       

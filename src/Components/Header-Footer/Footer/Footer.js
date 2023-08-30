@@ -1,4 +1,5 @@
 import React from "react" 
+import { Link } from "react-router-dom"
 import "./Footer.css"
 
 export default function Footer () {
@@ -7,7 +8,7 @@ export default function Footer () {
 
     return(
         <div className="footer">
-            <button className="partenairesButton">Partenaires<img src="/images/icons/arrow-right.svg"></img></button>
+            <Link to="/partenaires"><button className="partenairesButton">Partenaires<img src="/images/icons/arrow-right.svg"></img></button></Link>
             <div className="reseauxSociaux">
                 <h3 className="followUs">Nos réseaux sociaux</h3>
                 <div className="footerLogos">
