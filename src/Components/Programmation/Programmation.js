@@ -44,7 +44,7 @@ export default function Programmation () {
     const artiste = artistesData.map(data => {
         return (
             <div className="artistContainer">
-                <Link to={`/page-artiste/Jacque Chirac`}>
+                <Link to={`/page-artiste/${data.attributes.title}`}>
                     <img className="miniature" src={`http://drupal10/sites/default/files/2023-08/${data.attributes.title}.jpg`} alt="Artiste"></img>
                     <div className="infoMiniature">
                         <h2>{data.attributes.title}</h2>

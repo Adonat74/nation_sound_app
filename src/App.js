@@ -32,7 +32,8 @@ export default function App() {
         {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
         {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
         {menuToggle ? null : <Route path="/FAQ" element={<FAQ />} />}
-        <Route path="/page-artiste/:artistName" element={<PageArtiste />} />
+        {menuToggle ? null : <Route path="/page-artiste/:artistTitle" element={<PageArtiste />} />}
+        
         
       </Routes>
 
