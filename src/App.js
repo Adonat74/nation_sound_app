@@ -2,6 +2,7 @@ import Header from "./Components/Header-Footer/Header/Header";
 import MenuDeroulant from "./Components/Header-Footer/Header/MenuDeroulant";
 import Accueil from "./Components/Accueil/Accueil";
 import Programmation from "./Components/Programmation/Programmation";
+import Carte from "./Components/Carte/Carte";
 import Informations from "./Components/Info_FAQ/Informations";
 import Partenaires from "./Components/Partenaires/Partenaires";
 import PageArtiste from "./Components/PageArtiste/PageArtiste";
@@ -29,6 +30,7 @@ export default function App() {
       <Routes>
         {menuToggle ? null : <Route path="/" element={<Accueil />} />}
         {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
+        {menuToggle ? null : <Route path="/carte" element={<Carte />} />}
         {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
         {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
         {menuToggle ? null : <Route path="/FAQ" element={<FAQ />} />}
