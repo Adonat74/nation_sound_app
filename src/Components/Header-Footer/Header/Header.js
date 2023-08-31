@@ -6,7 +6,7 @@ export default function Header (props) {
 
     return(
         <div>
-            <div className={props.cartToggle ? "headerFixed" : "header"}>
+            <div className="header">
                 <Link to="/"><img className="logo" src="/images/logo.png" alt="Logo Nation Sound"></img></Link>
                 <div className="menu">
                 </div>

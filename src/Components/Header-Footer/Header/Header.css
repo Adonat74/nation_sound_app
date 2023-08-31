@@ -5,11 +5,16 @@
     height: 110px;
 }
 
+.header > a {
+    z-index: -100;
+}
+
 
 .logo {
     width: 120px;
     height: auto;
     margin-left: 10px;
+    
 }
 
 /*--------------------------Ici commence le menu grand ecran*/

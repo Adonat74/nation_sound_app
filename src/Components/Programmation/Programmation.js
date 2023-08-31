@@ -66,7 +66,7 @@ export default function Programmation () {
                 <select
                 value={scene}
                 onChange={handleChangeScene}
-                name="favColor"
+                name="sceneChoice"
                 className="selectProg">
                     <option value="">Toutes les scènes</option>
                     <option value="1">Scène 1</option>

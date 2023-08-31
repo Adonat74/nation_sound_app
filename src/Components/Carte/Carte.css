@@ -4,15 +4,29 @@
     padding: 0;
 }
 
-.map {
-    margin-bottom: -220px;
-}
-
 .leaflet-container {
     position:absolute;
     top:0px;
     right:0px;
     bottom:0px;
     left:0px;
-    z-index: 500;
+    z-index: 10;
+}
+
+.filter {
+    display: flex;
+    justify-content: center;
+}
+
+.catFilter {
+    width: 220px;
+    font-size: 1.5rem;
+    font-family: Lobster;
+    background-color: rgb(69, 66, 216);
+    color: rgb(255, 255, 255);
+    border: 3px solid #00ffb3b3;
+    position: absolute;
+    top: 20px;
+    margin-right: 70px;
+    z-index: 1000;
 }
