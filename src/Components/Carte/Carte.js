@@ -12,7 +12,6 @@ export default function Carte () {
     const [mapData, setMapData] = React.useState([]);
 
     function handleChangeCat (event) {
-        console.log(catFilter)
         setCatFilter(() => {
             return event.target.value
         })
@@ -29,7 +28,6 @@ export default function Carte () {
             
     }, [catFilter]);
 
-    console.log(mapData);
 
     const markers = mapData.map(data => {
         const customIcon = new Icon({

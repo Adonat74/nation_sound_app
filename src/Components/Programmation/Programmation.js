@@ -10,14 +10,12 @@ export default function Programmation () {
     const [scene, setScene] = React.useState("");
 
     function handleRadioChange (event) {
-        console.log(daySelected)
         setDaySelected(() => {
             return event.target.value
         })
     };
 
     function handleChangeScene (event) {
-        console.log(scene)
         setScene(() => {
             return event.target.value
         })
@@ -27,17 +25,12 @@ export default function Programmation () {
 
 
     
-
-    
     React.useEffect(() => {
        
         fetch(`http://drupal10/jsonapi/node/artistes?sort=field_heure&filter[field_jour]=${daySelected}${sceneQuery}`)
             .then(res => res.json())
             .then(data => setArtistesData(data.data))
     }, [daySelected, scene]);
-
-    console.log(artistesData);
-
 
 
 

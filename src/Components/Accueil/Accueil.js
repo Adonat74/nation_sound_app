@@ -13,7 +13,6 @@ export default function Accueil () {
             .then(data => setArtistesDataAccueil(data.data))
     }, []);
 
-    console.log(artistesDataAccueil);
 
 
     const artistesAccueil = artistesDataAccueil.map(data => {
@@ -46,6 +45,12 @@ export default function Accueil () {
                 {artistesAccueil}
             </div>
             <Link to="/programmation"><button className="billetterieButton">Programmation<img src="/images/icons/arrow-right.svg"></img></button></Link>
+            <Link to="/carte">
+                <div className="minimapContainer">
+                    <img className="minimap" src="/images/minimap.png" alt="Miniature de la carte"></img>
+                    <button className="mapButton">Carte<img src="/images/icons/arrow-right.svg"></img></button>
+                </div>
+            </Link>
             
             
             
