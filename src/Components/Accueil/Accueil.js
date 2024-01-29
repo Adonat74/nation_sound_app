@@ -8,18 +8,21 @@ export default function Accueil () {
 
     React.useEffect(() => {
        
-        fetch(`http://drupal10/jsonapi/node/artistes?sort=field_jour`)
+        fetch(`http://choco-pap.infinityfreeapp.com/wp-json/wp/v2/posts`)
             .then(res => res.json())
-            .then(data => setArtistesDataAccueil(data.data))
+            .then(data => console.log(data))
+            //.then(data => setArtistesDataAccueil(data))
+            //console.log(artistesDataAccueil)
     }, []);
-
+ 
+    
 
 
     const artistesAccueil = artistesDataAccueil.map(data => {
         return (
             <div className="artistContainerAccueil">
                 <Link to={`/page-artiste/${data.attributes.title}`}>
-                    <img className="miniature" src={`http://drupal10/sites/default/files/2023-08/${data.attributes.title}.jpg`} alt="Artiste"></img>
+                    <img className="miniature" src={`http://drupal-api-nation-sound.free.nf/sites/default/files/images/${data.attributes.title}.jpg`} alt="Artiste"></img>
                     <div className="infoMiniature">
                         <h2>{data.attributes.title}</h2>
                         <p>Jour {data.attributes.field_jour} - {data.attributes.field_heure}H</p>
@@ -42,7 +45,7 @@ export default function Accueil () {
             <h2>Liste de tous les concerts</h2>
 
             <div className="miniatureGridAccueil">
-                {artistesAccueil}
+                {/*artistesAccueil*/}
             </div>
             <Link to="/programmation"><button className="billetterieButton">Programmation<img src="/images/icons/arrow-right.svg"></img></button></Link>
             <Link to="/carte">
@@ -52,9 +55,6 @@ export default function Accueil () {
                 </div>
             </Link>
             
-            
-            
-
         </div>
     );
 }

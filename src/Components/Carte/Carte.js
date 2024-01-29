@@ -17,12 +17,13 @@ export default function Carte () {
         })
     };
 
+
     let catQuery = catFilter === "" ? "" : `?filter[field_cat]=${catFilter}`;
 
     
     React.useEffect(() => {
        
-        fetch(`http://drupal10/jsonapi/node/lieu_carte${catQuery}`)
+        fetch(`http://drupal-api-nation-sound.free.nf/jsonapi/node/lieu_carte${catQuery}`)
             .then(res => res.json())
             .then(data => setMapData(data.data))
             
@@ -43,8 +44,6 @@ export default function Carte () {
             </Marker>
         )
     })
-
-
 
 
 

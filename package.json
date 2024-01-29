@@ -2,7 +2,7 @@
   "name": "nation_sound",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://drupal10/jsonapi/node/partenaires",
+  "proxy": "https://cors-anywhere.herokuapp.com/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

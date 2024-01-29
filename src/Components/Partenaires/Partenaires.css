@@ -1,14 +1,73 @@
 .partenaires {
-    color: white;
-    text-shadow: rgb(27, 20, 100) 4px 4px;
-    font-size: 1.5rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 50px 0px;
     margin: 50px 0;
-    padding: 0 30px;
     height: 100%;
-    color: white;
-    letter-spacing: 2px;
 }
 
 .partenaire {
     text-align: center;
 }
+
+.partenaire-title {
+    color: white;
+    text-shadow: rgb(27, 20, 100) 4px 4px;
+    font-size: 4.5vw;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+
+.partenaire-logo {
+    width: 30vw;
+    height: 18vw;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+
+@media screen and (min-width: 768px) { 
+    .partenaires {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 50px 20px;
+        margin: 50px 30px;
+    }
+
+    .partenaire-logo {
+        width: 25vw;
+        height: 15vw;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .partenaire-title {
+        font-size: 3.5vw;
+    }
+}
+
+@media screen and (min-width: 1024px) { 
+    .partenaires {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 50px 20px;
+    }
+
+    .partenaire-logo {
+        width: 20vw;
+        height: 12vw;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .partenaire-title {
+        font-size: 3vw;
+    }
+}
+
+
+@media screen and (min-width: 1440px) { 
+    
+}
+
