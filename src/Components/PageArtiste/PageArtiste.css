@@ -9,7 +9,7 @@
 }
 
 .artistImage {
-    width: 300px;
+    width: 280px;
     border: 4px solid white;
 }
 
@@ -22,5 +22,55 @@
 }
 
 .pageArtistContainer {
-    width: 300px;
+    width: 280px;
+}
+
+
+@media screen and (min-width: 425px) { 
+    .pageArtistContainer {
+        width: 310px;
+    }
+
+    .artistImage {
+        width: 310px;
+    }
+}
+
+
+@media screen and (min-width: 768px) { 
+    .pageArtistContainer {
+        width: 350px;
+    }
+
+    .artistImage {
+        width: 350px;
+    }
+}
+
+@media screen and (min-width: 1024px) { 
+    .pageArtistContainer {
+        width: 80vw;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+
+    .artistImage {
+        width: 350px;
+        height: 350px;
+        object-fit: cover;
+    }
+
+    .pageArtistText {
+        width: 35vw;
+    }
+
+    .pageArtistTitle {
+        margin-top: 0;
+    }
+}
+
+
+@media screen and (min-width: 1440px) { 
+    
 }

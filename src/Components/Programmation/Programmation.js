@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom"
-import "./Programmation.css"
+import { Link } from "react-router-dom";
+import "./Programmation.css";
 
 export default function Programmation () {
 
@@ -33,7 +33,7 @@ export default function Programmation () {
     }, [daySelected, scene]);
 
 
-    console.log(artistesData);
+    //console.log(artistesData);
 
 
 
