@@ -18,9 +18,19 @@ export default function App() {
 
   const [menuToggle, setMenuToggle] = React.useState(false);
 
+
   function toggleMenu () {
     setMenuToggle(prevState => !prevState);
   }
+
+
+  window.addEventListener("resize", () => {
+    if (window.screen.width >= 1024) {
+      setMenuToggle(false);
+    }
+  });
+
+  
 
 
   return (

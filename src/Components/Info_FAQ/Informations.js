@@ -1,22 +1,34 @@
-import "./Info_FAQ.css"
+import React from "react";
+import "./Info_FAQ.css";
 
 export default function Informations () {
+
+    const [informationsData, setInformationsData] = React.useState([]);
+
+    
+    React.useEffect(() => {
+        fetch('http://localhost/drupal10/jsonapi/node/informations')
+            .then(res => res.json())
+            .then(data => setInformationsData(data.data));
+    }, []);
+
+    console.log(informationsData);
+
+    const informations = informationsData.map(data => {
+        return (
+            <div className="information">
+                <h2>{data.attributes.title}</h2>
+                <p>{data.attributes.field_description_information}</p>
+            </div> 
+        );
+    });
 
     return(
         <div className="informations">
             <h1>Informations</h1>
-            <h2>Information 1</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis, nibh sit amet malesuada venenatis, arcu urna fermentum justo, accumsan placerat quam justo non tellus. Suspendisse leo ligula, tincidunt ut efficitur a, rhoncus sit amet metus. Fusce feugiat libero nulla, vitae laoreet elit elementum elementum.</p>
-            <h2>Information 2</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis, nibh sit amet malesuada venenatis, arcu urna fermentum justo, accumsan placerat quam justo non tellus. Suspendisse leo ligula, tincidunt ut efficitur a, rhoncus sit amet metus. Fusce feugiat libero nulla, vitae laoreet elit elementum elementum.</p>
-            <h2>Information 3</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis, nibh sit amet malesuada venenatis, arcu urna fermentum justo, accumsan placerat quam justo non tellus. Suspendisse leo ligula, tincidunt ut efficitur a, rhoncus sit amet metus. Fusce feugiat libero nulla, vitae laoreet elit elementum elementum.</p>
-            <h2>Information 4</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis, nibh sit amet malesuada venenatis, arcu urna fermentum justo, accumsan placerat quam justo non tellus. Suspendisse leo ligula, tincidunt ut efficitur a, rhoncus sit amet metus. Fusce feugiat libero nulla, vitae laoreet elit elementum elementum.</p>
-            <h2>Information 5</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis, nibh sit amet malesuada venenatis, arcu urna fermentum justo, accumsan placerat quam justo non tellus. Suspendisse leo ligula, tincidunt ut efficitur a, rhoncus sit amet metus. Fusce feugiat libero nulla, vitae laoreet elit elementum elementum.</p>
-            
-
+            <div>
+                {informations}
+            </div>
         </div>
     );
 }

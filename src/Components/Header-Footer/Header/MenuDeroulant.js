@@ -1,6 +1,6 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import "./Header.css"
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Header.css";
 
 export default function MenuDeroulant (props) {
 
@@ -13,7 +13,6 @@ export default function MenuDeroulant (props) {
                 <Link to="/informations" className="elementsDeroulant">Informations</Link>
                 <Link to="/partenaires" className="elementsDeroulant">Partenaires</Link>
                 <Link to="/FAQ" className="elementsDeroulant">FAQ</Link>
-                
         </div>
     );
 }
