@@ -1,8 +1,8 @@
 import React from "react";
-import { MapContainer, TileLayer, useMap, Marker, Popup, ImageOverlay } from 'react-leaflet'
+import { MapContainer, TileLayer, useMap, Marker, Popup, ImageOverlay } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { LatLngBounds, Map, CRS, Icon } from "leaflet";
-import "./Carte.css"
+import "./Carte.css";
 
 export default function Carte () {
 
@@ -14,36 +14,37 @@ export default function Carte () {
     function handleChangeCat (event) {
         setCatFilter(() => {
             return event.target.value
-        })
+        });
     };
 
 
-    let catQuery = catFilter === "" ? "" : `?filter[field_cat]=${catFilter}`;
+    let catQuery = catFilter === "" ? "" : `?filter[field_categorie]=${catFilter}`;
 
     
     React.useEffect(() => {
        
-        fetch(`http://drupal-api-nation-sound.free.nf/jsonapi/node/lieu_carte${catQuery}`)
+        fetch(`http://localhost/drupal10/jsonapi/node/lieux${catQuery}`)
             .then(res => res.json())
-            .then(data => setMapData(data.data))
+            .then(data => setMapData(data.data));
             
     }, [catFilter]);
 
 
+
     const markers = mapData.map(data => {
         const customIcon = new Icon({
-            iconUrl: `/images/icons/pin-${data.attributes.field_cat}.svg`,
+            iconUrl: `/images/icons/pin-${data.attributes.field_categorie}.svg`,
             iconSize: [35, 35]
         });
         return (
             <Marker position={[data.attributes.field_lat, data.attributes.field_lng]} icon={customIcon}>
                 <Popup>
                     <h2>{data.attributes.title}</h2>
-                    <p>{data.attributes.field_description_lieu.value}</p>
+                    <p>{data.attributes.field_description_lieu}</p>
                 </Popup>
             </Marker>
-        )
-    })
+        );
+    });
 
 
 
@@ -69,7 +70,7 @@ export default function Carte () {
 
             <MapContainer center={[250, 500]} zoom={0} maxZoom={3} scrollWheelZoom={true} crs={CRS.Simple}>
                 <ImageOverlay
-                    url="http://drupal10/sites/default/files/2023-08/Capture%20d%27%C3%A9cran%202023-08-30%20175241.png"
+                    url="images/map.png"
                     bounds={bounds}
                     zIndex={10}                  
                 />
