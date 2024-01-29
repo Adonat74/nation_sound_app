@@ -81,6 +81,7 @@
 .infoMiniature > h2 {
     font-size: 1.3rem;
     margin: 7px 0 10px;
+    min-width: 120px;
 }
 
 .infoMiniature > p {
@@ -107,14 +108,14 @@
     }
 
     .miniature {
-        width: 150px;
-        height: 150px;
+        width: 145px;
+        height: 145px;
         object-fit: cover;
         border: 3px solid white;
     }
 
     .artistContainer > a {
-        max-width: 150px;
+        max-width: 145px;
     }
 }
 

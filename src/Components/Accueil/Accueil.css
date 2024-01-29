@@ -20,7 +20,7 @@
 }
 
 .accueil > h2 {
-    font-size: 2rem;
+    font-size: 1.58rem;
     text-shadow: rgb(27, 20, 100) 4px 4px;
     margin: 40px 0 0;
 }
@@ -28,7 +28,7 @@
 .billetterieButton {
     color: rgb(27, 20, 100);
     font-family: Lobster, Arial, Helvetica, sans-serif;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     display: flex;
     align-items: center;
     background: linear-gradient(330deg, rgba(236, 140, 22, 0.998), rgb(183, 34, 197) 80%);
@@ -55,6 +55,7 @@
 .artistContainerAccueil > a {
     text-decoration: none;
     color: white;
+    width: 120px;
 }
 
 .miniatureGridAccueil {
@@ -100,5 +101,35 @@
 .mapButton > img {
     height: 40px;
     margin-left: 20px;
+}
+
+
+@media screen and (min-width: 425px) { 
+
+    .artistContainerAccueil {
+        margin-right: 27px;
+    }
+
+    .billetterieButton {
+        font-size: 2.5rem;
+    }
+
+    .accueil > h2 {
+        font-size: 2rem;
+        text-shadow: rgb(27, 20, 100) 4px 4px;
+        margin: 40px 0 0;
+    }
+}
+
+@media screen and (min-width: 768px) { 
+    .miniatureGridAccueil {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1024px) { 
+    .miniatureGridAccueil {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
 }
 

@@ -1,6 +1,6 @@
-import React from "react" 
-import { Link } from "react-router-dom"
-import "./Accueil.css"
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Accueil.css";
 
 export default function Accueil () {
 
@@ -8,24 +8,24 @@ export default function Accueil () {
 
     React.useEffect(() => {
        
-        fetch(`http://choco-pap.infinityfreeapp.com/wp-json/wp/v2/posts`)
+        fetch(`http://localhost/drupal10/jsonapi/node/artistes`)
             .then(res => res.json())
-            .then(data => console.log(data))
-            //.then(data => setArtistesDataAccueil(data))
-            //console.log(artistesDataAccueil)
+            .then(data => setArtistesDataAccueil(data.data));
     }, []);
  
-    
-
+    console.log(artistesDataAccueil);
 
     const artistesAccueil = artistesDataAccueil.map(data => {
+
+        let title = data.attributes.title;
+
         return (
             <div className="artistContainerAccueil">
-                <Link to={`/page-artiste/${data.attributes.title}`}>
-                    <img className="miniature" src={`http://drupal-api-nation-sound.free.nf/sites/default/files/images/${data.attributes.title}.jpg`} alt="Artiste"></img>
+                <Link to={`/page-artiste/${title}`}>
+                    <img className="miniature" src={`${data.attributes.field_photo.uri}`} alt={`${title}`}></img>
                     <div className="infoMiniature">
-                        <h2>{data.attributes.title}</h2>
-                        <p>Jour {data.attributes.field_jour} - {data.attributes.field_heure}H</p>
+                        <h2>{title}</h2>
+                        <p>Jour {data.attributes.field_day} - {data.attributes.field_heure}H</p>
                         <p>Scène {data.attributes.field_scene}</p>
                     </div>
                 </Link>
@@ -45,7 +45,7 @@ export default function Accueil () {
             <h2>Liste de tous les concerts</h2>
 
             <div className="miniatureGridAccueil">
-                {/*artistesAccueil*/}
+                {artistesAccueil}
             </div>
             <Link to="/programmation"><button className="billetterieButton">Programmation<img src="/images/icons/arrow-right.svg"></img></button></Link>
             <Link to="/carte">

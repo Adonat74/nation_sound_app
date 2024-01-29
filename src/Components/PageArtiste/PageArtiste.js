@@ -13,14 +13,12 @@ export default function PageArtiste () {
 
 
     React.useEffect(() => {
-
-
         fetch(`http://localhost/drupal10/jsonapi/node/artistes?filter[title]=${artistTitle}`)
             .then(res => res.json())
             .then(data => setArtisteData(data.data[0].attributes))
     }, []);
 
-    console.log(artisteData);
+    //console.log(artisteData);
 
 
 
