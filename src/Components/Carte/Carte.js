@@ -1,7 +1,8 @@
 import React from "react";
-import { MapContainer, TileLayer, useMap, Marker, Popup, ImageOverlay } from 'react-leaflet';
+import { Link } from "react-router-dom";
+import { MapContainer, Marker, Popup, ImageOverlay } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { LatLngBounds, Map, CRS, Icon } from "leaflet";
+import { LatLngBounds, CRS, Icon } from "leaflet";
 import "./Carte.css";
 
 export default function Carte () {
@@ -36,11 +37,15 @@ export default function Carte () {
             iconUrl: `/images/icons/pin-${data.attributes.field_categorie}.svg`,
             iconSize: [35, 35]
         });
+
+        
         return (
             <Marker position={[data.attributes.field_lat, data.attributes.field_lng]} icon={customIcon}>
                 <Popup>
-                    <h2>{data.attributes.title}</h2>
-                    <p>{data.attributes.field_description_lieu}</p>
+                    <Link to={data.attributes.field_categorie === "scene" ? `/programmation` : ""}>
+                        <h2>{data.attributes.title}</h2>
+                        <p>{data.attributes.field_description_lieu}</p>
+                    </Link>
                 </Popup>
             </Marker>
         );
@@ -48,10 +53,11 @@ export default function Carte () {
 
 
 
+
+
+
     return(
         <div id="map">
-
-
             <div className="filter">
                 <select
                 value={catFilter}

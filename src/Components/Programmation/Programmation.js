@@ -12,13 +12,13 @@ export default function Programmation () {
     function handleRadioChange (event) {
         setDaySelected(() => {
             return event.target.value
-        })
+        });
     };
 
     function handleChangeScene (event) {
         setScene(() => {
             return event.target.value
-        })
+        });
     };
 
     let sceneQuery = scene === "" ? "" : `&filter[field_scene]=${scene}`;
