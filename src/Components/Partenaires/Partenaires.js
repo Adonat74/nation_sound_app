@@ -18,22 +18,15 @@ export default function Partenaires () {
     const partenaires = partenairesData.map(data => {
         return (
             <div className="partenaire">
-                <img className="partenaire-logo" src={`${data.attributes.field_partners_logo_url.uri}`}></img>
+                <img className="partenaire-logo" src={`${data.attributes.field_partners_logo_url.uri}`} alt={`${data.attributes.title}`}></img>
                 <h3 className="partenaire-title">{data.attributes.title}</h3>
             </div> 
         )
     })
     
 
-
-    
-    
-
-
-
     return(
         <div className="partenaires">
-            
             {partenaires}
         </div>
     );

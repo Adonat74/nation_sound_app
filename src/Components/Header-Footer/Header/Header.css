@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: space-between;
     height: 110px;
 }
@@ -9,15 +9,28 @@
     z-index: 5;
 }
 
-
 .logo {
     width: 120px;
     height: auto;
     margin-left: 10px;
-    
 }
 
 /*--------------------------Ici commence le menu grand ecran*/
+
+.menu {
+    display: none;
+}
+
+.menu > a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: #00FFB2;
+}
+
+.elementsMenu {
+    font-size: 1.8rem;
+    margin-right: 30px;
+}
 
 
 
@@ -66,7 +79,19 @@
 }
 
 
-@media screen and (min-width: 768px) { 
+@media screen and (min-width: 1024px) { 
 
+    .header {
+        align-items: center;
+    }
+
+
+    .menu {
+        display: flex;
+    }
+
+    .burger {
+        display: none;
+    }
 
 }
