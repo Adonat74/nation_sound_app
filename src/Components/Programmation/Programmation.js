@@ -25,22 +25,27 @@ export default function Programmation () {
 
 
     
-    // React.useEffect(() => {
+    React.useEffect(() => {
        
-    //     fetch(`http://drupal-api-nation-sound.free.nf/jsonapi/node/artistes?sort=field_heure&filter[field_jour]=${daySelected}${sceneQuery}`)
-    //         .then(res => res.json())
-    //         .then(data => setArtistesData(data.data))
-    // }, [daySelected, scene]);
+        fetch(`http://localhost/drupal10/jsonapi/node/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
+            .then(res => res.json())
+            .then(data => setArtistesData(data.data))
+    }, [daySelected, scene]);
+
+
+    console.log(artistesData);
 
 
 
     const artiste = artistesData.map(data => {
+        let title = data.attributes.title
+
         return (
             <div className="artistContainer">
-                <Link to={`/page-artiste/${data.attributes.title}`}>
-                    <img className="miniature" src={`http://drupal-api-nation-sound.free.nf/sites/default/files/2023-08/${data.attributes.title}.jpg`} alt="Artiste"></img>
+                <Link to={`/page-artiste/${title}`}>
+                    <img className="miniature" src={`${data.attributes.field_photo.uri}`} alt={`${title}`}></img>
                     <div className="infoMiniature">
-                        <h2>{data.attributes.title}</h2>
+                        <h2>{title}</h2>
                         <p>Scène {data.attributes.field_scene}</p>
                         <p>{data.attributes.field_heure}H</p>
                     </div>
@@ -107,7 +112,6 @@ export default function Programmation () {
 
             <div className="miniatureGrid">
                 {artiste}
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Daft_Punk_in_2013.jpg"></img>
             </div>
 
         </div>
