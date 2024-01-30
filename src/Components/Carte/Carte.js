@@ -30,7 +30,7 @@ export default function Carte () {
     }, [catFilter]);
 
     React.useEffect(() => {
-        fetch(`http://localhost/drupal10/jsonapi/node/artistes?limit=2`)
+        fetch(`http://localhost/drupal10/jsonapi/node/artistes`)
             .then(res => res.json())
             .then(data => setSceneData(data.data));
     }, []);
