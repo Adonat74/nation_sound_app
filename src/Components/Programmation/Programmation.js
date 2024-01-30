@@ -29,7 +29,7 @@ export default function Programmation () {
        
         fetch(`http://localhost/drupal10/jsonapi/node/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
             .then(res => res.json())
-            .then(data => setArtistesData(data.data))
+            .then(data => setArtistesData(data.data));
     }, [daySelected, scene]);
 
 
