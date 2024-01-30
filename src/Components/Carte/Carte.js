@@ -11,6 +11,8 @@ export default function Carte () {
 
     const [catFilter, setCatFilter] = React.useState("");
     const [mapData, setMapData] = React.useState([]);
+    const [sceneData, setSceneData] = React.useState([]);
+    
 
     function handleChangeCat (event) {
         setCatFilter(() => {
@@ -21,30 +23,51 @@ export default function Carte () {
 
     let catQuery = catFilter === "" ? "" : `?filter[field_categorie]=${catFilter}`;
 
-    
     React.useEffect(() => {
-       
         fetch(`http://localhost/drupal10/jsonapi/node/lieux${catQuery}`)
             .then(res => res.json())
             .then(data => setMapData(data.data));
-            
     }, [catFilter]);
+
+    React.useEffect(() => {
+        fetch(`http://localhost/drupal10/jsonapi/node/artistes?limit=2`)
+            .then(res => res.json())
+            .then(data => setSceneData(data.data));
+    }, []);
+
 
 
 
     const markers = mapData.map(data => {
+
+        const title = data.attributes.title;
+        const sceneNumber = title[title.length - 1];
+
         const customIcon = new Icon({
             iconUrl: `/images/icons/pin-${data.attributes.field_categorie}.svg`,
             iconSize: [35, 35]
         });
 
+        const scene = sceneData.map(scene => {
+            if (scene.attributes.field_scene == parseInt(sceneNumber)) {
+                return  (
+                    <p>
+                        {scene.attributes.title}
+                    </p>
+                );
+            }
+        });
+
         
         return (
             <Marker position={[data.attributes.field_lat, data.attributes.field_lng]} icon={customIcon}>
-                <Popup>
+                <Popup className="popup">
                     <Link to={data.attributes.field_categorie === "scene" ? `/programmation` : ""}>
-                        <h2>{data.attributes.title}</h2>
-                        <p>{data.attributes.field_description_lieu}</p>
+                        <h2 className="popupTitle">{title}</h2>
+                        <div className="mapArtistes">
+                            <p>{data.attributes.field_categorie === "scene" ? "" : data.attributes.field_description_lieu}</p>
+                            {scene}
+                        </div>
                     </Link>
                 </Popup>
             </Marker>

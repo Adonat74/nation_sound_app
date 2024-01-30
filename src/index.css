@@ -5,3 +5,7 @@ body {
     width: 100%;
     background: linear-gradient(300deg, rgba(183, 19, 19, 0.998), rgb(06, 82, 221) 80%) fixed;
 }
+
+a {
+    text-decoration: none;
+}
