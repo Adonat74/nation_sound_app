@@ -1,8 +1,11 @@
 import React from "react"; 
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import "./Header.css";
 
 export default function Header (props) {
+
+    const { auth } = useAuth();
 
     return(
             <div className="header">
@@ -11,7 +14,7 @@ export default function Header (props) {
                     <Link to="/" className="elementsMenu">Accueil</Link>
                     <Link to="/programmation" className="elementsMenu">Programmation</Link>
                     <Link to="/carte" className="elementsMenu">Carte</Link>
-                    <Link to="/mon-compte" className="elementsMenu">Mon Compte</Link>
+                    <Link to={auth?.email ? "/mon-compte" : "/mon-compte/connexion"} className="elementsMenu">Mon Compte</Link>
                     <Link to="/informations" className="elementsMenu">Informations</Link>
                     <Link to="/partenaires" className="elementsMenu">Partenaires</Link>
                     <Link to="/FAQ" className="elementsMenu">FAQ</Link>

@@ -1,10 +1,10 @@
 import React from "react"; 
-import axios from "axios";
+import axios from '../../../api/axios';
 import "./CreerMonCompte.css";
 
-export default function CreerMonCompte (props) {
+export default function CreerMonCompte () {
 
-    const [createUserData, setcreateUserData] = React.useState(
+    const [createUserData, setCreateUserData] = React.useState(
         {
             email: "", 
             username: "", 
@@ -17,7 +17,7 @@ export default function CreerMonCompte (props) {
     function handleChange(event) {
         //console.log(event);
         const { name, value } = event.target;
-        setcreateUserData(prevFormData => {
+        setCreateUserData(prevFormData => {
             return {
                 ...prevFormData,
                 [name]: value
@@ -28,8 +28,7 @@ export default function CreerMonCompte (props) {
     function handleSubmit(event) {
         event.preventDefault();
         console.log(createUserData);
-        axios.post(
-            "http://localhost:3001/api/createUser",
+        axios.post("/api/createUser",
             createUserData,
             { headers: { "Content-Type": "application/json" } }
         )

@@ -1,18 +1,25 @@
-import { useRef, useState, useEffect, useContext } from "react"; 
-import axios from "axios";
+import { useRef, useState, useEffect } from "react"; 
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import axios from '../../../api/axios';
 import "./Connexion.css";
-import AuthContext from "../../../context/AuthProvider.js";
+import useAuth from "../../../hooks/useAuth";
 
 export default function Connexion () {
 
-    const { setAuth } = useContext(AuthContext);
+    const { setAuth } = useAuth();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/mon-compte";
+
+
+
     const emailRef = useRef();
     const errRef = useRef();
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
 
 
     useEffect(() => {
@@ -27,25 +34,23 @@ export default function Connexion () {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        //console.log(loginUserData);
 
         try {
-            const response = await axios.post(
-                "http://localhost:3001/api/login",
+            const response = await axios.post("/api/login",
                 { email, password },
                 { 
                     headers: { "Content-Type": "application/json" },
                     withCredentials: true 
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response?.data?.token));
-            const accessToken = response?.data?.token;
-            const favoriteMusicGenre = response?.data?.favoritemusicgenre;
-            setAuth({ email, password, favoriteMusicGenre, accessToken });
+            console.log(response?.data);
+            const token = response?.data?.token;
+            const favoriteMusicGenre = response?.data?.data.favoritemusicgenre;
+            const username = response?.data?.data.username;
+            setAuth({ email, username, password, favoriteMusicGenre, token });
             setEmail('');
             setPassword('');
-            setSuccess(true);
+            navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -64,51 +69,37 @@ export default function Connexion () {
 
 
     return(
-        <div className="monCompte">
-            {success ? (
-                <section>
-                    <h1>You are logged in!</h1>
-                    <br />
-                    <p>
-                        <a href="#">Go to Home</a>
-                    </p>
-                </section>
-            ) : (
-
-                <section>
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Connexion</h1>
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            id="email"
-                            ref={emailRef}
-                            autoComplete="off"
-                            onChange={(e) => setEmail(e.target.value)}
-                            name="email"
-                            value={email}
-                            required
-                        />
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            value={password}
-                            required
-                        />
-                        <button>Connexion</button>
-                    </form>
-                    <p>
-                        Need an Account?<br />
-                        <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign Up</a>
-                        </span>
-                    </p>
-                </section>
-            )}
-        </div>
+        <section>
+            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+            <h1>Connexion</h1>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    id="email"
+                    ref={emailRef}
+                    autoComplete="off"
+                    onChange={(e) => setEmail(e.target.value)}
+                    name="email"
+                    value={email}
+                    required
+                />
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    required
+                />
+                <button>Connexion</button>
+            </form>
+            <p>
+                Need an Account?<br />
+                <span className="line">
+                    <Link to="/mon-compte/creer">Créer un compte</Link>
+                </span>
+            </p>
+        </section>
     );
 }
