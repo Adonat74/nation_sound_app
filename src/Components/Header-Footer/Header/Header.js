@@ -11,6 +11,7 @@ export default function Header (props) {
                     <Link to="/" className="elementsMenu">Accueil</Link>
                     <Link to="/programmation" className="elementsMenu">Programmation</Link>
                     <Link to="/carte" className="elementsMenu">Carte</Link>
+                    <Link to="/mon-compte" className="elementsMenu">Mon Compte</Link>
                     <Link to="/informations" className="elementsMenu">Informations</Link>
                     <Link to="/partenaires" className="elementsMenu">Partenaires</Link>
                     <Link to="/FAQ" className="elementsMenu">FAQ</Link>

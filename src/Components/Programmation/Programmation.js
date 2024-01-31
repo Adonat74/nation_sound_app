@@ -26,7 +26,6 @@ export default function Programmation () {
 
     
     React.useEffect(() => {
-       
         fetch(`http://localhost/drupal10/jsonapi/node/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
             .then(res => res.json())
             .then(data => setArtistesData(data.data));
@@ -35,7 +34,7 @@ export default function Programmation () {
 
     //console.log(artistesData);
 
-
+    
 
     const artiste = artistesData.map(data => {
         let title = data.attributes.title

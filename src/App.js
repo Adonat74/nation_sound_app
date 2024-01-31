@@ -3,7 +3,9 @@ import MenuDeroulant from "./Components/Header-Footer/Header/MenuDeroulant";
 import Accueil from "./Components/Accueil/Accueil";
 import Programmation from "./Components/Programmation/Programmation";
 import Carte from "./Components/Carte/Carte";
-import ConnexionInscription from "./Components/ConnexionInscription/ConnexionInscription";
+import MonCompte from "./Components/MonCompte/MonCompte";
+import CreerMonCompte from "./Components/MonCompte/CreerMonCompte/CreerMonCompte";
+import Connexion from "./Components/MonCompte/Connexion/Connexion"
 import Informations from "./Components/Info_FAQ/Informations";
 import Partenaires from "./Components/Partenaires/Partenaires";
 import PageArtiste from "./Components/PageArtiste/PageArtiste";
@@ -45,7 +47,9 @@ export default function App() {
         {menuToggle ? null : <Route path="/" element={<Accueil />} />}
         {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
         {menuToggle ? null : <Route path="/carte" element={<Carte />} />}
-        {menuToggle ? null : <Route path="/connexion-inscription" element={<ConnexionInscription />} />}
+        {menuToggle ? null : <Route path="/mon-compte" element={<MonCompte />} />}
+        {menuToggle ? null : <Route path="/creer-mon-compte" element={<CreerMonCompte />} />}
+        {menuToggle ? null : <Route path="/connexion" element={<Connexion />} />}
         {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
         {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
         {menuToggle ? null : <Route path="/FAQ" element={<FAQ />} />}
