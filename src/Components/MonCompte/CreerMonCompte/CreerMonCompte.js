@@ -35,7 +35,7 @@ export default function CreerMonCompte (props) {
         )
         .then(res => res.data)
         .then(res => console.log(res))
-        .catch(err => console.log(err.response))
+        .catch(err => console.log(err.response));
     }
 
     return(

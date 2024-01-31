@@ -15,6 +15,8 @@ import './App.css';
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 
+import { AuthProvider } from './context/AuthProvider';
+
 
 
 export default function App() {
@@ -45,16 +47,25 @@ export default function App() {
 
       <Routes>
         {menuToggle ? null : <Route path="/" element={<Accueil />} />}
-        {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
+  
         {menuToggle ? null : <Route path="/carte" element={<Carte />} />}
-        {menuToggle ? null : <Route path="/mon-compte" element={<MonCompte />} />}
+        
         {menuToggle ? null : <Route path="/creer-mon-compte" element={<CreerMonCompte />} />}
         {menuToggle ? null : <Route path="/connexion" element={<Connexion />} />}
+        
         {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
         {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
         {menuToggle ? null : <Route path="/FAQ" element={<FAQ />} />}
         {menuToggle ? null : <Route path="/page-artiste/:artistTitle" element={<PageArtiste />} />}
       </Routes>
+      
+      <AuthProvider>
+        <Routes>
+          {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
+          {menuToggle ? null : <Route path="/mon-compte" element={<MonCompte />} />}
+          
+        </Routes>
+      </AuthProvider>
 
       <div className={menuToggle ? null : "space"}></div>
 
