@@ -32,15 +32,15 @@ export default function ModifierMonCompte () {
         setAuth({});
     }
 
-
+    
 
     return(
         <div className="monCompte">
             {confirmDelete ? (
                 <section>
                     <h1>Êtes vous sûr de vouloir supprimer ce compte?</h1>
-                    <button onClick={unConfirmDeleteUser}>Non revenir en arrière</button>
-                    <button onClick={deleteUser}>Oui Supprimer le compte</button>
+                    <button onClick={unConfirmDeleteUser}>Non: revenir en arrière</button>
+                    <button onClick={deleteUser}>Oui: Supprimer le compte</button>
                 </section>
             ) : (
                 <section>

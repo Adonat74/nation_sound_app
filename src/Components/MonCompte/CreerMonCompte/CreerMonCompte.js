@@ -30,7 +30,7 @@ export default function CreerMonCompte () {
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
-    const [favoritemusicgenre, setFavoritemusicgenre] = useState('');
+    const [favoritemusicgenre, setFavoritemusicgenre] = useState('Aucun');
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
@@ -60,11 +60,11 @@ export default function CreerMonCompte () {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({ email, username, password, favoritemusicgenre })
+        // console.log({ email, username, password, favoritemusicgenre });
         // if button enabled with JS hack
         const v1 = USER_REGEX.test(username);
         const v2 = PASSWORD_REGEX.test(password);
-        const v3 = EMAIL_REGEX.test(email)
+        const v3 = EMAIL_REGEX.test(email);
         if (!v1 || !v2 || !v3) {
             setErrMsg("Email, pseudo ou mot de passe invalide");
             return;
@@ -77,22 +77,22 @@ export default function CreerMonCompte () {
                     withCredentials: true
                 }
             );
-            console.log(response?.data);
-            console.log(response?.token);
             console.log(response)
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this
+            setEmail('');
             setUsername('');
             setPassword('');
             setMatchPassword('');
+            setFavoritemusicgenre('Aucun');
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken');
+                setErrMsg('Pas de réponse du serveur');
+            } else if (err.response?.status === 400) {
+                setErrMsg("L'email est déjà utilisé");
             } else {
-                setErrMsg('Registration Failed')
+                setErrMsg('La création du compte à échouée')
             }
             errRef.current.focus();
         }
@@ -102,15 +102,13 @@ export default function CreerMonCompte () {
         <>
             {success ? (
                 <section>
-                    <h1>Success!</h1>
-                    <p>
+                    <h1>Votre compte à bien été créé</h1>
                     <Link to="/mon-compte/connexion">Se connecter</Link>
-                    </p>
                 </section>
             ) : (
                 <section className="monCompte">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Register</h1>
+                    <h1>Créer un compte</h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="email">
                             Email:
@@ -132,12 +130,12 @@ export default function CreerMonCompte () {
                         />
                         <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            Must be a valid email.<br />
+                            Doit être un email valide.<br />
                         </p>
                         
 
                         <label htmlFor="username">
-                            Username:
+                            Nom:
                             <FontAwesomeIcon icon={faCheck} className={validUsername ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validUsername || !username ? "hide" : "invalid"} />
                         </label>
@@ -155,14 +153,14 @@ export default function CreerMonCompte () {
                         />
                         <p id="uidnote" className={usernameFocus && username && !validUsername ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            4 to 24 characters.<br />
-                            Must begin with a letter.<br />
-                            Letters, numbers, underscores, hyphens allowed.
+                            4 à 24 caractères.<br />
+                            Doit commencer avec une lettre.<br />
+                            Lettres, nombres, underscores, traits d'union autorisés.
                         </p>
 
 
                         <label htmlFor="password">
-                            Password:
+                            Mot de passe:
                             <FontAwesomeIcon icon={faCheck} className={validPassword ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validPassword || !password ? "hide" : "invalid"} />
                         </label>
@@ -179,15 +177,15 @@ export default function CreerMonCompte () {
                         />
                         <p id="passwordnote" className={passwordFocus && !validPassword ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            10 to 24 characters.<br />
-                            Must include uppercase and lowercase letters, a number and a special character.<br />
-                            Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                            10 à 24 caractères.<br />
+                            Doit inclure au moin une minuscule, une majuscule, un nombre et un caractère spéciale.<br />
+                            Caractères spéciales autorisés: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                         </p>
 
 
 
                         <label htmlFor="confirm_password">
-                            Confirm Password:
+                            Confirmer le mot de passe:
                             <FontAwesomeIcon icon={faCheck} className={validMatch && matchPassword ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPassword ? "hide" : "invalid"} />
                         </label>
@@ -204,9 +202,13 @@ export default function CreerMonCompte () {
                         />
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            Must match the first password input field.
+                            Doit être identique au premier mot de passe.
                         </p>
 
+
+                        <label htmlFor="favoritemusicgenre">
+                            Choisissez votre genre de musique préféré:
+                        </label>
                         <select 
                             id="favoritemusicgenre" 
                             value={favoritemusicgenre}
@@ -228,7 +230,7 @@ export default function CreerMonCompte () {
                         <button disabled={!validUsername || !validPassword || !validMatch ? true : false}>Créer mon compte</button>
                     </form>
                     <p>
-                        Already registered?<br />
+                        Vous possédez déjà un compte?<br />
                         <span className="line">
                             <Link to="/mon-compte/connexion">Connectez-vous</Link>
                         </span>

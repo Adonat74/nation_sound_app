@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import axios from '../../../api/axios';
 import useAuth from "../../../hooks/useAuth";
 import "./ModifierMonCompte.css";
@@ -32,7 +33,7 @@ export default function ModifierMonCompte () {
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
-    const [favoritemusicgenre, setFavoritemusicgenre] = useState('');
+    const [favoritemusicgenre, setFavoritemusicgenre] = useState('Aucun');
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
@@ -65,7 +66,7 @@ export default function ModifierMonCompte () {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({ email, username, password, favoritemusicgenre })
+        //console.log({ email, username, password, favoritemusicgenre })
         // if button enabled with JS hack
         const v1 = USER_REGEX.test(username);
         const v2 = PASSWORD_REGEX.test(password);
@@ -82,22 +83,22 @@ export default function ModifierMonCompte () {
                     withCredentials: true
                 }
             );
-            console.log(response?.data);
-            console.log(response?.token);
             console.log(response)
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this
+            setEmail('');
             setUsername('');
             setPassword('');
             setMatchPassword('');
+            setFavoritemusicgenre('Aucun');
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrMsg('Pas de réponse du serveur');
             } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken');
+                setErrMsg("L'email est déjà utilisé");
             } else {
-                setErrMsg('Registration Failed')
+                setErrMsg('La modification du compte à échouée')
             }
             errRef.current.focus();
         }
@@ -107,12 +108,13 @@ export default function ModifierMonCompte () {
         <>
             {success ? (
                 <section>
-                    <h1>Success!</h1>
+                    <h1>Votre compte à bien été modifié</h1>
+                    <Link to="/mon-compte">Retour à la page: Mon compte</Link>
                 </section>
             ) : (
                 <section className="monCompte">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Register</h1>
+                    <h1>Modifier les informations du compte</h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="email">
                             Email:
@@ -134,12 +136,12 @@ export default function ModifierMonCompte () {
                         />
                         <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            Must be a valid email.<br />
+                            Doit être un email valide.<br />
                         </p>
                         
 
                         <label htmlFor="username">
-                            Username:
+                            Nom:
                             <FontAwesomeIcon icon={faCheck} className={validUsername ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validUsername || !username ? "hide" : "invalid"} />
                         </label>
@@ -157,14 +159,14 @@ export default function ModifierMonCompte () {
                         />
                         <p id="uidnote" className={usernameFocus && username && !validUsername ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            4 to 24 characters.<br />
-                            Must begin with a letter.<br />
-                            Letters, numbers, underscores, hyphens allowed.
+                            4 à 24 caractères.<br />
+                            Doit commencer avec une lettre.<br />
+                            Lettres, nombres, underscores, traits d'union autorisés.
                         </p>
 
 
                         <label htmlFor="password">
-                            Password:
+                            Mot de passe:
                             <FontAwesomeIcon icon={faCheck} className={validPassword ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validPassword || !password ? "hide" : "invalid"} />
                         </label>
@@ -181,15 +183,15 @@ export default function ModifierMonCompte () {
                         />
                         <p id="passwordnote" className={passwordFocus && !validPassword ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            10 to 24 characters.<br />
-                            Must include uppercase and lowercase letters, a number and a special character.<br />
-                            Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                            10 à 24 caractères.<br />
+                            Doit inclure au moin une minuscule, une majuscule, un nombre et un caractère spéciale.<br />
+                            Caractères spéciales autorisés: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                         </p>
 
 
 
                         <label htmlFor="confirm_password">
-                            Confirm Password:
+                            Confirmer le mot de passe:
                             <FontAwesomeIcon icon={faCheck} className={validMatch && matchPassword ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPassword ? "hide" : "invalid"} />
                         </label>
@@ -206,9 +208,13 @@ export default function ModifierMonCompte () {
                         />
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            Must match the first password input field.
+                            Doit être identique au premier mot de passe.
                         </p>
 
+
+                        <label htmlFor="favoritemusicgenre">
+                            Choisissez votre genre de musique préféré:
+                        </label>
                         <select 
                             id="favoritemusicgenre" 
                             value={favoritemusicgenre}
@@ -229,6 +235,7 @@ export default function ModifierMonCompte () {
                         <br />
                         <button disabled={!validUsername || !validPassword || !validMatch ? true : false}>Modifier mon compte</button>
                     </form>
+                    <Link to="/mon-compte">Retour au compte</Link>
                 </section>
             )}
         </>

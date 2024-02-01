@@ -54,7 +54,6 @@ export default function Connexion () {
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
-                console.log(err);
             } else if (err.response?.status === 400) {
                 setErrMsg('Missing Username or Password');
             } else if (err.response?.status === 401) {
