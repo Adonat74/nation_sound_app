@@ -99,17 +99,17 @@ export default function CreerMonCompte () {
     }
 
     return(
-        <>
+        <div className="creerMonCompte">
             {success ? (
-                <section>
-                    <h1>Votre compte à bien été créé</h1>
-                    <Link to="/mon-compte/connexion">Se connecter</Link>
+                <section className="creerMonCompteContainer">
+                    <h1 className="creerMonCompteSuccess">Votre compte à bien été créé!</h1>
+                    <Link to="/mon-compte/connexion" className="seConnecter">Se connecter</Link>
                 </section>
             ) : (
-                <section className="monCompte">
+                <section className="creerMonCompteContainer">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Créer un compte</h1>
-                    <form onSubmit={handleSubmit}>
+                    <h1 className="creerMonCompteTitle">Créer un compte</h1>
+                    <form onSubmit={handleSubmit} className="creerMonCompteForm">
                         <label htmlFor="email">
                             Email:
                             <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
@@ -225,18 +225,12 @@ export default function CreerMonCompte () {
                             <option value="Latine">Latine</option>
                             <option value="Pop">Pop</option>
                         </select>
-                        <br />
-                        <br />
                         <button disabled={!validUsername || !validPassword || !validMatch ? true : false}>Créer mon compte</button>
                     </form>
-                    <p>
-                        Vous possédez déjà un compte?<br />
-                        <span className="line">
-                            <Link to="/mon-compte/connexion">Connectez-vous</Link>
-                        </span>
-                    </p>
+                    <h2>Vous possédez déjà un compte?</h2>
+                    <Link to="/mon-compte/connexion">Connectez-vous</Link>
                 </section>
             )}
-        </>
+        </div>
     );
 }

@@ -53,13 +53,13 @@ export default function Connexion () {
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrMsg('Pas de réponse serveur');
             } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
+                setErrMsg("Il manque l'email ou le mot de passe");
             } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
+                setErrMsg('Pas autorisé');
             } else {
-                setErrMsg('Login Failed');
+                setErrMsg('La connexion à échoué');
             }
             errRef.current.focus();
         }

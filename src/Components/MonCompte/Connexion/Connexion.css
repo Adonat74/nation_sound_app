@@ -1,6 +1,8 @@
 .connexion {
     display: flex;
     justify-content: center;
+    height: 100%;
+    margin-bottom: 50px;
 }
 
 .connexionContainer {

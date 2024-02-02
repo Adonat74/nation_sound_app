@@ -3,6 +3,7 @@
     align-items: flex-start;
     justify-content: space-between;
     height: 110px;
+    z-index: 5;
 }
 
 .header > a {

@@ -37,17 +37,17 @@ export default function ModifierMonCompte () {
     return(
         <div className="monCompte">
             {confirmDelete ? (
-                <section>
+                <section className="monCompteContainer">
                     <h1>Êtes vous sûr de vouloir supprimer ce compte?</h1>
-                    <button onClick={unConfirmDeleteUser}>Non: revenir en arrière</button>
-                    <button onClick={deleteUser}>Oui: Supprimer le compte</button>
+                    <button onClick={unConfirmDeleteUser} className="monCompteButtons">Non: revenir en arrière</button>
+                    <button onClick={deleteUser} className="monCompteButtons">Oui: Supprimer le compte</button>
                 </section>
             ) : (
-                <section>
-                    <p>mon compte</p>
-                    <Link to="/mon-compte/modifier">Modifier mon compte</Link>
-                    <button onClick={confirmDeleteUser}>Supprimer le compte</button>
-                    <button onClick={disconnect}>Se déconnecter</button>
+                <section className="monCompteContainer">
+                    <h2 className="connexionTitle ">mon compte</h2>
+                    <Link className="monCompteButtons" to="/mon-compte/modifier">Modifier mon compte</Link>
+                    <button onClick={confirmDeleteUser} className="monCompteButtons">Supprimer le compte</button>
+                    <button onClick={disconnect} className="monCompteButtons">Se déconnecter</button>
                 </section>
             )} 
         </div>
