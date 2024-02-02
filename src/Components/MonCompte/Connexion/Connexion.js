@@ -68,37 +68,36 @@ export default function Connexion () {
 
 
     return(
-        <section>
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Connexion</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    id="email"
-                    ref={emailRef}
-                    autoComplete="off"
-                    onChange={(e) => setEmail(e.target.value)}
-                    name="email"
-                    value={email}
-                    required
-                />
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    required
-                />
-                <button>Connexion</button>
-            </form>
-            <p>
-                Need an Account?<br />
-                <span className="line">
-                    <Link to="/mon-compte/creer">Créer un compte</Link>
-                </span>
-            </p>
+        <section className="connexion">
+            <div className="connexionContainer">
+                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                <h1 className="connexionTitle">Connexion</h1>
+                <form className="connexionForm" onSubmit={handleSubmit}>
+                    <label htmlFor="email">Email :</label>
+                    <input
+                        type="email"
+                        id="email"
+                        ref={emailRef}
+                        autoComplete="off"
+                        onChange={(e) => setEmail(e.target.value)}
+                        name="email"
+                        value={email}
+                        required
+                    />
+                    <label htmlFor="password">Mot de passe :</label>
+                    <input
+                        type="password"
+                        id="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                        required
+                    />
+                    <button>Se connecter</button>
+                </form>
+                <h2>Pas de compte?</h2>
+                <Link to="/mon-compte/creer">Créer un compte</Link>
+            </div>
+            
         </section>
     );
 }

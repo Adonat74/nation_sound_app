@@ -9,7 +9,7 @@ export default function Header (props) {
 
     return(
             <div className="header">
-                <Link to="/"><img className="logo" src="/images/logo.png" alt="Logo Nation Sound"></img></Link>
+                <Link to="/" onClick={() => props.toggleMenu()}><img className="logo" src="/images/logo.png" alt="Logo Nation Sound"></img></Link>
                 <div className="menu">
                     <Link to="/" className="elementsMenu">Accueil</Link>
                     <Link to="/programmation" className="elementsMenu">Programmation</Link>

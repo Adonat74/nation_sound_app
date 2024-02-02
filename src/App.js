@@ -42,7 +42,7 @@ export default function App() {
 
 
   return (
-    <div className="App">
+    <div className={ menuToggle ? "AppMenu" : "App" }>
 
       <Header toggleMenu={toggleMenu} />
               
@@ -68,7 +68,7 @@ export default function App() {
           </Route>
 
           {/* catch all */}
-          <Route path="*" element={<Missing />} />
+          {menuToggle ? null : <Route path="*" element={<Missing />} />}
 
         </Route>
       </Routes>
