@@ -7,9 +7,9 @@
 
 .leaflet-container {
     position:absolute;
-    top:0px;
+    top:-110px;
     right:0px;
-    bottom:0px;
+    bottom:-50px;
     left:0px;
     z-index: 10;
 }
@@ -17,6 +17,7 @@
 .filter {
     display: flex;
     justify-content: center;
+    z-index: 0;
 }
 
 .catFilter {
@@ -27,7 +28,7 @@
     color: rgb(255, 255, 255);
     border: 3px solid #00ffb3b3;
     position: absolute;
-    top: 20px;
+    top: -90px;
     margin-right: 70px;
     z-index: 1000;
 }

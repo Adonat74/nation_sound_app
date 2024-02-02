@@ -77,7 +77,8 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    z-index: 1000;
+    position: relative;
+    z-index: 100000000;
 }
 
 

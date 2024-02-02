@@ -1,0 +1,97 @@
+.modifierMonCompte {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 50px;
+}
+
+.modifierMonCompteContainer {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin-top: 30px;
+    padding-bottom: 30px;
+    background: linear-gradient(30deg, rgba(126, 10, 209, 0.998), rgb(4, 185, 128) 80%) fixed;
+    border-radius: 50px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.203), -10px -10px 15px rgba(0, 0, 0, 0.199);
+}
+
+.modifierMonCompteTitle {
+    text-align: center;
+    font-size: 2.2rem;
+    letter-spacing: 1.5px;
+    text-shadow: rgb(27, 20, 100) 3.5px 3.5px;
+    margin: 15px 0 10px;
+}
+
+.modifierMonCompteForm {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.modifierMonCompteForm > label {
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+    text-shadow: rgb(27, 20, 100) 2px 2px;
+}
+
+.modifierMonCompteForm > input, select {
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.150), -4px -4px 6px rgba(0, 0, 0, 0.150);
+}
+
+.modifierMonCompteForm > button {
+    color: rgb(27, 20, 100);
+    height: 40px;
+    font-family: Lobster, Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+    background: linear-gradient(330deg, #00FFB2, rgb(220, 206, 13) 80%);
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.459) 6px 6px 25px;
+    margin-top: 20px;
+}
+
+.modifierMonCompteContainer > h2 {
+    text-shadow: rgb(27, 20, 100) 2px 2px;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.modifierMonCompteContainer > a {
+    font-size: 1.4rem;
+    color: rgb(60, 251, 235);
+    text-shadow: rgb(46, 5, 156) 2px 2px;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    margin-top: 20px;
+}
+
+.modifierMonCompteSuccess {
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+    text-shadow: rgb(27, 20, 100) 3px 3px;
+    margin: 25px 0 20px;
+}
+
+@media screen and (min-width: 425px) { 
+    .modifierMonCompteContainer {
+        width: 400px;
+    }
+}
+
+
+@media screen and (min-width: 768px) { 
+    .modifierMonCompteContainer {
+        width: 500px;
+    }
+}

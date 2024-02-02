@@ -105,17 +105,17 @@ export default function ModifierMonCompte () {
     }
 
     return(
-        <>
+        <div className="creerMonCompte">
             {success ? (
-                <section>
-                    <h1>Votre compte à bien été modifié</h1>
-                    <Link to="/mon-compte">Retour à la page: Mon compte</Link>
+                <section className="modifierMonCompteContainer">
+                    <h1 className="modifierMonCompteSuccess">Votre compte à bien été modifié</h1>
+                    <Link to="/mon-compte" className="seConnecter">Retour à la page: Mon compte</Link>
                 </section>
             ) : (
-                <section className="monCompte">
+                <section  className="modifierMonCompteContainer">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Modifier les informations du compte</h1>
-                    <form onSubmit={handleSubmit}>
+                    <h1 className="modifierMonCompteTitle">Modifier vos informations</h1>
+                    <form onSubmit={handleSubmit} className="modifierMonCompteForm">
                         <label htmlFor="email">
                             Email:
                             <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
@@ -231,13 +231,11 @@ export default function ModifierMonCompte () {
                             <option value="Latine">Latine</option>
                             <option value="Pop">Pop</option>
                         </select>
-                        <br />
-                        <br />
                         <button disabled={!validUsername || !validPassword || !validMatch ? true : false}>Modifier mon compte</button>
                     </form>
                     <Link to="/mon-compte">Retour au compte</Link>
                 </section>
             )}
-        </>
+        </div>
     );
 }

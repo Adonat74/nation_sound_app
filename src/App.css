@@ -1,11 +1,8 @@
 .App {
-    position: relative;
-    min-height: 100vh;
-}
-
-.AppMenu {
   position: relative;
-}
+  min-height: 85vh;
+} 
+
 
 .space {
     padding-bottom: 220px;
