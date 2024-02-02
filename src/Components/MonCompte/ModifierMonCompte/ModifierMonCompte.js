@@ -12,7 +12,7 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{10,24}$
 
 export default function ModifierMonCompte () {
 
-    const { auth } = useAuth();
+    const { auth, setAuth } = useAuth();
 
     const emailRef = useRef();
     const errRef = useRef();
@@ -33,7 +33,7 @@ export default function ModifierMonCompte () {
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
-    const [favoritemusicgenre, setFavoritemusicgenre] = useState('Aucun');
+    const [favoriteMusicGenre, setFavoriteMusicGenre] = useState('aucun');
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
@@ -60,13 +60,10 @@ export default function ModifierMonCompte () {
     }, [email, username, password, matchPassword]);
 
 
-    console.log({ email, username, password, favoritemusicgenre });
-
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        //console.log({ email, username, password, favoritemusicgenre })
+        //console.log({ email, username, password, favoriteMusicGenre })
         // if button enabled with JS hack
         const v1 = USER_REGEX.test(username);
         const v2 = PASSWORD_REGEX.test(password);
@@ -77,7 +74,7 @@ export default function ModifierMonCompte () {
         }
         try {
             const response = await axios.put("/api/updateUser",
-                { email, username, password, favoritemusicgenre },
+                { email, username, password, favoriteMusicGenre },
                 {
                     headers: { "Content-Type": "application/json", 'Authorization': 'Bearer ' + auth?.token },
                     withCredentials: true
@@ -85,13 +82,16 @@ export default function ModifierMonCompte () {
             );
             console.log(response)
             setSuccess(true);
+            let token = auth.token
+            setAuth({ email, username, password, favoriteMusicGenre, token });
             //clear state and controlled inputs
             //need value attrib on inputs for this
+            
             setEmail('');
             setUsername('');
             setPassword('');
             setMatchPassword('');
-            setFavoritemusicgenre('Aucun');
+            setFavoriteMusicGenre('Aucun');
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('Pas de réponse du serveur');
@@ -212,24 +212,24 @@ export default function ModifierMonCompte () {
                         </p>
 
 
-                        <label htmlFor="favoritemusicgenre">
+                        <label htmlFor="favoriteMusicGenre">
                             Choisissez votre genre de musique préféré:
                         </label>
                         <select 
-                            id="favoritemusicgenre" 
-                            value={favoritemusicgenre}
-                            onChange={(e) => setFavoritemusicgenre(e.target.value)}
+                            id="favoriteMusicGenre" 
+                            value={favoriteMusicGenre}
+                            onChange={(e) => setFavoriteMusicGenre(e.target.value)}
                         >
-                            <option value="Aucun">Aucun</option>
-                            <option value="Rap">Rap</option>
-                            <option value="Electro">Electro</option>
-                            <option value="Rock">Rock</option>
-                            <option value="Classique">Classique</option>
-                            <option value="Jazz">Jazz</option>
-                            <option value="Reggae">Reggae</option>
-                            <option value="Country">Country</option>
-                            <option value="Latine">Latine</option>
-                            <option value="Pop">Pop</option>
+                            <option value="aucun">Aucun</option>
+                            <option value="rap">Rap</option>
+                            <option value="electro">Electro</option>
+                            <option value="rock">Rock</option>
+                            <option value="classique">Classique</option>
+                            <option value="jazz">Jazz</option>
+                            <option value="reggae">Reggae</option>
+                            <option value="country">Country</option>
+                            <option value="latine">Latine</option>
+                            <option value="pop">Pop</option>
                         </select>
                         <button disabled={!validUsername || !validPassword || !validMatch ? true : false}>Modifier mon compte</button>
                     </form>

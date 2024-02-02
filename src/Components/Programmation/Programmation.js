@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import "./Programmation.css";
 
 export default function Programmation () {
 
-
+    const { auth } = useAuth();
     const [daySelected, setDaySelected] = React.useState("1");
     const [artistesData, setArtistesData] = React.useState([]);
     const [scene, setScene] = React.useState("");
+
+    //let genre = auth.favoriteMusicGenre;
 
     function handleRadioChange (event) {
         setDaySelected(() => {
@@ -21,9 +24,9 @@ export default function Programmation () {
         });
     };
 
+
+
     let sceneQuery = scene === "" ? "" : `&filter[field_scene]=${scene}`;
-
-
     
     React.useEffect(() => {
         fetch(`http://localhost/drupal10/jsonapi/node/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
@@ -32,9 +35,22 @@ export default function Programmation () {
     }, [daySelected, scene]);
 
 
-    //console.log(artistesData);
+
+    //console.log(genre)
 
     
+
+    // React.useEffect(() => {
+    //     if (auth.email && genre !== 'aucun') {
+    //         let data = artistesData;
+    //         let sorted = data.sort((x) => x.attributes.field_music_genre === genre ? -1 : 0);
+    //         setArtistesData(sorted);
+    //         console.log(sorted);
+    //     } 
+    // }, [artistesData]);
+
+    //console.log(artistesData)
+
 
     const artiste = artistesData.map(data => {
         let title = data.attributes.title
@@ -54,7 +70,7 @@ export default function Programmation () {
     });
 
 
-
+    
 
     return(
         <div className="programmation">

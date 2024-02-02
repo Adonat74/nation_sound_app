@@ -6,7 +6,7 @@ import "./MonCompte.css";
 
 export default function ModifierMonCompte () {
 
-    const { auth, setAuth} = useAuth();
+    const { auth, setAuth } = useAuth();
 
     const [confirmDelete, setConfirmDelete] = useState(false);
 

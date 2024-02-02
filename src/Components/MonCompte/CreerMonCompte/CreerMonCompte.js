@@ -30,7 +30,7 @@ export default function CreerMonCompte () {
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
-    const [favoritemusicgenre, setFavoritemusicgenre] = useState('Aucun');
+    const [favoritemusicgenre, setFavoritemusicgenre] = useState('aucun');
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
@@ -214,16 +214,16 @@ export default function CreerMonCompte () {
                             value={favoritemusicgenre}
                             onChange={(e) => setFavoritemusicgenre(e.target.value)}
                         >
-                            <option value="Aucun">Aucun</option>
-                            <option value="Rap">Rap</option>
-                            <option value="Electro">Electro</option>
-                            <option value="Rock">Rock</option>
-                            <option value="Classique">Classique</option>
-                            <option value="Jazz">Jazz</option>
-                            <option value="Reggae">Reggae</option>
-                            <option value="Country">Country</option>
-                            <option value="Latine">Latine</option>
-                            <option value="Pop">Pop</option>
+                            <option value="aucun">Aucun</option>
+                            <option value="rap">Rap</option>
+                            <option value="electro">Electro</option>
+                            <option value="rock">Rock</option>
+                            <option value="classique">Classique</option>
+                            <option value="jazz">Jazz</option>
+                            <option value="reggae">Reggae</option>
+                            <option value="country">Country</option>
+                            <option value="latine">Latine</option>
+                            <option value="pop">Pop</option>
                         </select>
                         <button disabled={!validUsername || !validPassword || !validMatch ? true : false}>Créer mon compte</button>
                     </form>

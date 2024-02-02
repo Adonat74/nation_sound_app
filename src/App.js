@@ -27,7 +27,6 @@ export default function App() {
   const [menuToggle, setMenuToggle] = React.useState(false);
 
   let location = useLocation();
-  console.log(location.pathname);
 
   function toggleMenu () {
     setMenuToggle(prevState => !prevState);
@@ -80,9 +79,9 @@ export default function App() {
       </section>
       
       
-      <div className={menuToggle || location.pathname == "/carte" ? null : "space"}></div>
+      <div className={menuToggle || location.pathname === "/carte" ? null : "space"}></div>
 
-      {menuToggle || location.pathname == "/carte" ? null : <Footer />}
+      {menuToggle || location.pathname === "/carte" ? null : <Footer />}
       
     </div>
   );
