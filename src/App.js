@@ -18,6 +18,7 @@ import './App.css';
 import React from 'react';
 import RequireAuth from './Components/RequireAuth';
 import { Routes, Route, useLocation } from "react-router-dom";
+import PayPal from "./Paypal/PayPal";
 
 
 
@@ -69,6 +70,7 @@ export default function App() {
             <Route element={<RequireAuth />}>
               {menuToggle ? null : <Route path="/mon-compte/modifier" element={<ModifierMonCompte />} />}
               {menuToggle ? null : <Route path="/mon-compte" element={<MonCompte />} />}
+              {menuToggle ? null : <Route path="/checkout" element={<PayPal />} />}
             </Route>
 
             {/* catch all */}

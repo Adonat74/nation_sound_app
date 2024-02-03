@@ -48,6 +48,7 @@ export default function ModifierMonCompte () {
                     <Link className="monCompteButtons" to="/mon-compte/modifier">Modifier mon compte</Link>
                     <button onClick={confirmDeleteUser} className="monCompteButtons">Supprimer le compte</button>
                     <button onClick={disconnect} className="monCompteButtons">Se déconnecter</button>
+                    <Link to="/checkout" className="monCompteButtons">Billetterie</Link>
                 </section>
             )} 
         </div>

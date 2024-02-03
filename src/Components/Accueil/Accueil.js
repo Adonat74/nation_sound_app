@@ -1,12 +1,12 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Accueil.css";
 
 export default function Accueil () {
 
-    const [artistesDataAccueil, setArtistesDataAccueil] = React.useState([]);
+    const [artistesDataAccueil, setArtistesDataAccueil] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
        
         fetch(`http://localhost/drupal10/jsonapi/node/artistes`)
             .then(res => res.json())
@@ -40,7 +40,7 @@ export default function Accueil () {
         <div className="accueil">
             <h1>Accueil</h1>
             <div>
-                <button className="billetterieButton">Billetterie<img src="/images/icons/arrow-right.svg" alt="flèche à droite"></img></button>
+            <Link to="/checkout"><button className="billetterieButton">Billetterie<img src="/images/icons/arrow-right.svg" alt="flèche à droite"></img></button></Link>
             </div>
             <h2>Liste de tous les concerts</h2>
 
@@ -54,7 +54,6 @@ export default function Accueil () {
                     <button className="mapButton">Carte<img src="/images/icons/arrow-right.svg" alt="flèche à droite"></img></button>
                 </div>
             </Link>
-            
         </div>
-    );
+    )
 }
