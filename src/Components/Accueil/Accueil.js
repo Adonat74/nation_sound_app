@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { drupalAPI } from '../../api/axios';
 import "./Accueil.css";
 
 export default function Accueil () {
@@ -7,10 +8,8 @@ export default function Accueil () {
     const [artistesDataAccueil, setArtistesDataAccueil] = useState([]);
 
     useEffect(() => {
-       
-        fetch(`http://localhost/drupal10/jsonapi/node/artistes`)
-            .then(res => res.json())
-            .then(data => setArtistesDataAccueil(data.data));
+        drupalAPI.get(`/artistes`)
+            .then(res => setArtistesDataAccueil(res.data.data));
     }, []);
  
     //console.log(artistesDataAccueil);

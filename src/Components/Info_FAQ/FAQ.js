@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { drupalAPI } from '../../api/axios';
 import "./Info_FAQ.css";
 
 
@@ -6,11 +7,10 @@ export default function FAQ () {
 
     const [FAQData, setFAQData] = useState([]);
 
-    
+
     useEffect(() => {
-        fetch('http://localhost/drupal10/jsonapi/node/faq')
-            .then(res => res.json())
-            .then(data => setFAQData(data.data));
+        drupalAPI.get(`/faq`)
+            .then(res => setFAQData(res.data.data));
     }, []);
 
     //console.log(FAQData);

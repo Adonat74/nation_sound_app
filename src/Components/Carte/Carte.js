@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MapContainer, Marker, Popup, ImageOverlay } from 'react-leaflet';
-//import { drupalAPI } from '../../../api/axios';
+import { drupalAPI } from '../../api/axios';
 import 'leaflet/dist/leaflet.css';
 import { LatLngBounds, CRS, Icon } from "leaflet";
 import "./Carte.css";
@@ -25,15 +25,13 @@ export default function Carte () {
     let catQuery = catFilter === "" ? "" : `?filter[field_categorie]=${catFilter}`;
 
     useEffect(() => {
-        fetch(`http://localhost/drupal10/jsonapi/node/lieux${catQuery}`)
-            .then(res => res.json())
-            .then(data => setMapData(data.data));
+        drupalAPI.get(`/lieux${catQuery}`)
+            .then(res => setMapData(res.data.data));
     }, [catFilter, catQuery]);
 
     useEffect(() => {
-        fetch(`http://localhost/drupal10/jsonapi/node/artistes`)
-            .then(res => res.json())
-            .then(data => setSceneData(data.data));
+        drupalAPI.get(`/artistes`)
+            .then(res => setSceneData(res.data.data));
     }, []);
 
 

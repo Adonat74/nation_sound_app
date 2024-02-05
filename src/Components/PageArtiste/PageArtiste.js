@@ -1,26 +1,23 @@
 import "./PageArtiste.css";
+import { useEffect, useState } from "react";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { drupalAPI } from '../../api/axios';
 
 
 export default function PageArtiste () {
 
-    const {artistTitle} = useParams();
+    const { artistTitle } = useParams();
 
-    const [artisteData, setArtisteData] = React.useState({field_heure: 0, field_scene: 0, field_description: 0, field_photo: {uri: 0}});
+    const [artisteData, setArtisteData] = useState({field_heure: 0, field_scene: 0, field_description: 0, field_photo: {uri: 0}});
 
+
+    useEffect(() => {
+        drupalAPI.get(`/artistes?filter[title]=${artistTitle}`)
+            .then(res => setArtisteData(res.data.data[0].attributes));
+    }, [artistTitle]);
     
-
-
-    React.useEffect(() => {
-        fetch(`http://localhost/drupal10/jsonapi/node/artistes?filter[title]=${artistTitle}`)
-            .then(res => res.json())
-            .then(data => setArtisteData(data.data[0].attributes))
-    }, []);
-
     //console.log(artisteData);
-
-
 
     return(
         <div className="pageArtist">

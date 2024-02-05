@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { drupalAPI } from '../../api/axios';
 import "./Partenaires.css"
 
 
@@ -6,12 +7,12 @@ export default function Partenaires () {
 
     const [partenairesData, setPartenairesData] = useState([]);
 
-    
+
     useEffect(() => {
-        fetch('http://localhost/drupal10/jsonapi/node/partners')
-            .then(res => res.json())
-            .then(data => setPartenairesData(data.data))
+        drupalAPI.get(`/partners`)
+            .then(res => setPartenairesData(res.data.data));
     }, []);
+
 
     //console.log(partenairesData);
 

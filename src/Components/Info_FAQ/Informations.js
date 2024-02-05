@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
+import { drupalAPI } from '../../api/axios';
 import "./Info_FAQ.css";
 
 export default function Informations () {
 
     const [informationsData, setInformationsData] = useState([]);
 
-    
+
+
     useEffect(() => {
-        fetch('http://localhost/drupal10/jsonapi/node/informations')
-            .then(res => res.json())
-            .then(data => setInformationsData(data.data));
+        drupalAPI.get(`/informations`)
+            .then(res => setInformationsData(res.data.data));
     }, []);
 
     //console.log(informationsData);

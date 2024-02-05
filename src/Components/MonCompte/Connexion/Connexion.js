@@ -43,7 +43,7 @@ export default function Connexion () {
                     withCredentials: true 
                 }
             );
-            console.log(response?.data);
+            //console.log(response?.data);
             const token = response?.data?.token;
             const favoriteMusicGenre = response?.data?.data.favoritemusicgenre;
             const username = response?.data?.data.username;

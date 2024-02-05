@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { drupalAPI } from '../../api/axios';
 //import useAuth from "../../hooks/useAuth";
 import "./Programmation.css";
 
@@ -27,11 +28,11 @@ export default function Programmation () {
 
 
     let sceneQuery = scene === "" ? "" : `&filter[field_scene]=${scene}`;
-    
+
+
     useEffect(() => {
-        fetch(`http://localhost/drupal10/jsonapi/node/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
-            .then(res => res.json())
-            .then(data => setArtistesData(data.data));
+        drupalAPI.get(`/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
+            .then(res => setArtistesData(res.data.data));
     }, [daySelected, scene, sceneQuery]);
 
 
