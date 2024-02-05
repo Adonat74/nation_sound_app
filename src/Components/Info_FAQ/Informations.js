@@ -1,12 +1,12 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "./Info_FAQ.css";
 
 export default function Informations () {
 
-    const [informationsData, setInformationsData] = React.useState([]);
+    const [informationsData, setInformationsData] = useState([]);
 
     
-    React.useEffect(() => {
+    useEffect(() => {
         fetch('http://localhost/drupal10/jsonapi/node/informations')
             .then(res => res.json())
             .then(data => setInformationsData(data.data));

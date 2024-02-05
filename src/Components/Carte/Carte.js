@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MapContainer, Marker, Popup, ImageOverlay } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -9,9 +9,9 @@ export default function Carte () {
 
     const bounds = new LatLngBounds([0, 0], [500, 1000]);
 
-    const [catFilter, setCatFilter] = React.useState("");
-    const [mapData, setMapData] = React.useState([]);
-    const [sceneData, setSceneData] = React.useState([]);
+    const [catFilter, setCatFilter] = useState("");
+    const [mapData, setMapData] = useState([]);
+    const [sceneData, setSceneData] = useState([]);
     
 
     function handleChangeCat (event) {
@@ -23,13 +23,13 @@ export default function Carte () {
 
     let catQuery = catFilter === "" ? "" : `?filter[field_categorie]=${catFilter}`;
 
-    React.useEffect(() => {
+    useEffect(() => {
         fetch(`http://localhost/drupal10/jsonapi/node/lieux${catQuery}`)
             .then(res => res.json())
             .then(data => setMapData(data.data));
-    }, [catFilter]);
+    }, [catFilter, catQuery]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         fetch(`http://localhost/drupal10/jsonapi/node/artistes`)
             .then(res => res.json())
             .then(data => setSceneData(data.data));
@@ -48,7 +48,7 @@ export default function Carte () {
         });
 
         const scene = sceneData.map(scene => {
-            if (scene.attributes.field_scene == parseInt(sceneNumber)) {
+            if (scene.attributes.field_scene === parseInt(sceneNumber)) {
                 return  (
                     <p key={scene.id}>
                         {scene.attributes.title}

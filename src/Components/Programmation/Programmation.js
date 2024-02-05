@@ -1,14 +1,14 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+//import useAuth from "../../hooks/useAuth";
 import "./Programmation.css";
 
 export default function Programmation () {
 
-    const { auth } = useAuth();
-    const [daySelected, setDaySelected] = React.useState("1");
-    const [artistesData, setArtistesData] = React.useState([]);
-    const [scene, setScene] = React.useState("");
+    //const { auth } = useAuth();
+    const [daySelected, setDaySelected] = useState("1");
+    const [artistesData, setArtistesData] = useState([]);
+    const [scene, setScene] = useState("");
 
     //let genre = auth.favoriteMusicGenre;
 
@@ -28,11 +28,11 @@ export default function Programmation () {
 
     let sceneQuery = scene === "" ? "" : `&filter[field_scene]=${scene}`;
     
-    React.useEffect(() => {
+    useEffect(() => {
         fetch(`http://localhost/drupal10/jsonapi/node/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
             .then(res => res.json())
             .then(data => setArtistesData(data.data));
-    }, [daySelected, scene]);
+    }, [daySelected, scene, sceneQuery]);
 
 
 
@@ -40,7 +40,7 @@ export default function Programmation () {
 
     
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (auth.email && genre !== 'aucun') {
     //         let data = artistesData;
     //         let sorted = data.sort((x) => x.attributes.field_music_genre === genre ? -1 : 0);

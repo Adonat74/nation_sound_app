@@ -1,13 +1,13 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "./Partenaires.css"
 
 
 export default function Partenaires () {
 
-    const [partenairesData, setPartenairesData] = React.useState([]);
+    const [partenairesData, setPartenairesData] = useState([]);
 
     
-    React.useEffect(() => {
+    useEffect(() => {
         fetch('http://localhost/drupal10/jsonapi/node/partners')
             .then(res => res.json())
             .then(data => setPartenairesData(data.data))
