@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react"; 
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import axios from '../../../api/axios';
+import { nodeAPI } from '../../../api/axios';
 import "./Connexion.css";
 import useAuth from "../../../hooks/useAuth";
 
@@ -36,7 +36,7 @@ export default function Connexion () {
         event.preventDefault();
 
         try {
-            const response = await axios.post("/api/login",
+            const response = await nodeAPI.post("/api/login",
                 { email, password },
                 { 
                     headers: { "Content-Type": "application/json" },

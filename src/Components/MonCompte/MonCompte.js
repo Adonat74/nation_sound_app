@@ -1,7 +1,7 @@
 import { useState } from "react"; 
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import axios from '../../api/axios';
+import { nodeAPI } from '../../api/axios';
 import "./MonCompte.css";
 
 export default function ModifierMonCompte () {
@@ -19,7 +19,7 @@ export default function ModifierMonCompte () {
     }
 
     function deleteUser() {
-        axios.delete("/api/deleteUser",
+        nodeAPI.delete("/api/deleteUser",
             { headers: {'Authorization': 'Bearer ' + auth?.token } }
         )
         .then(res => res.data)

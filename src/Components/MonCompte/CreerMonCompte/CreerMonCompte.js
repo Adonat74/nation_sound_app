@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from '../../../api/axios';
+import { nodeAPI } from '../../../api/axios';
 import "./CreerMonCompte.css";
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -70,7 +70,7 @@ export default function CreerMonCompte () {
             return;
         }
         try {
-            const response = await axios.post("/api/createUser",
+            const response = await nodeAPI.post("/api/createUser",
                 { email, username, password, favoritemusicgenre },
                 {
                     headers: { 'Content-Type': 'application/json' },

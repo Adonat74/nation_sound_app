@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MapContainer, Marker, Popup, ImageOverlay } from 'react-leaflet';
+//import { drupalAPI } from '../../../api/axios';
 import 'leaflet/dist/leaflet.css';
 import { LatLngBounds, CRS, Icon } from "leaflet";
 import "./Carte.css";
@@ -47,6 +48,7 @@ export default function Carte () {
             iconSize: [35, 35]
         });
 
+        // eslint-disable-next-line
         const scene = sceneData.map(scene => {
             if (scene.attributes.field_scene === parseInt(sceneNumber)) {
                 return  (

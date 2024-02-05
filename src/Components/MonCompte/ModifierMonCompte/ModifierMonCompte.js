@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import axios from '../../../api/axios';
+import { nodeAPI } from '../../../api/axios';
 import useAuth from "../../../hooks/useAuth";
 import "./ModifierMonCompte.css";
 
@@ -73,7 +73,7 @@ export default function ModifierMonCompte () {
             return;
         }
         try {
-            const response = await axios.put("/api/updateUser",
+            const response = await nodeAPI.put("/api/updateUser",
                 { email, username, password, favoriteMusicGenre },
                 {
                     headers: { "Content-Type": "application/json", 'Authorization': 'Bearer ' + auth?.token },
