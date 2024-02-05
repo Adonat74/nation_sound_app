@@ -13,11 +13,11 @@ export default function Partenaires () {
             .then(data => setPartenairesData(data.data))
     }, []);
 
-    console.log(partenairesData);
+    //console.log(partenairesData);
 
     const partenaires = partenairesData.map(data => {
         return (
-            <div className="partenaire">
+            <div className="partenaire" key={data.id}>
                 <img className="partenaire-logo" src={`${data.attributes.field_partners_logo_url.uri}`} alt={`${data.attributes.title}`}></img>
                 <h3 className="partenaire-title">{data.attributes.title}</h3>
             </div> 

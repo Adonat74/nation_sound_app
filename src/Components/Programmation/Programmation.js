@@ -56,7 +56,7 @@ export default function Programmation () {
         let title = data.attributes.title
 
         return (
-            <div className="artistContainer">
+            <div className="artistContainer" key={data.id}>
                 <Link to={`/page-artiste/${title}`}>
                     <img className="miniature" src={`${data.attributes.field_photo.uri}`} alt={`${title}`}></img>
                     <div className="infoMiniature">

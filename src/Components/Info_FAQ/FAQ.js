@@ -13,11 +13,11 @@ export default function FAQ () {
             .then(data => setFAQData(data.data));
     }, []);
 
-    console.log(FAQData);
+    //console.log(FAQData);
 
     const FAQ = FAQData.map(data => {
         return (
-            <div className="question">
+            <div className="question" key={data.id}>
                 <h2>{data.attributes.title}</h2>
                 <p>{data.attributes.field_reponse}</p>
             </div> 

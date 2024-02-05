@@ -20,7 +20,7 @@ export default function Accueil () {
         let title = data.attributes.title;
 
         return (
-            <div className="artistContainerAccueil">
+            <div className="artistContainerAccueil" key={data.id}>
                 <Link to={`/page-artiste/${title}`}>
                     <img className="miniature" src={`${data.attributes.field_photo.uri}`} alt={`${title}`}></img>
                     <div className="infoMiniature">

@@ -37,7 +37,6 @@ export default function Carte () {
 
 
 
-
     const markers = mapData.map(data => {
 
         const title = data.attributes.title;
@@ -51,7 +50,7 @@ export default function Carte () {
         const scene = sceneData.map(scene => {
             if (scene.attributes.field_scene == parseInt(sceneNumber)) {
                 return  (
-                    <p>
+                    <p key={scene.id}>
                         {scene.attributes.title}
                     </p>
                 );
@@ -60,7 +59,7 @@ export default function Carte () {
 
         
         return (
-            <Marker position={[data.attributes.field_lat, data.attributes.field_lng]} icon={customIcon}>
+            <Marker position={[data.attributes.field_lat, data.attributes.field_lng]} icon={customIcon} key={data.id}>
                 <Popup className="popup">
                     <Link to={data.attributes.field_categorie === "scene" ? `/programmation` : ""}>
                         <h2 className="popupTitle">{title}</h2>

@@ -12,11 +12,11 @@ export default function Informations () {
             .then(data => setInformationsData(data.data));
     }, []);
 
-    console.log(informationsData);
+    //console.log(informationsData);
 
     const informations = informationsData.map(data => {
         return (
-            <div className="information">
+            <div className="information" key={data.id}>
                 <h2>{data.attributes.title}</h2>
                 <p>{data.attributes.field_description_information}</p>
             </div> 

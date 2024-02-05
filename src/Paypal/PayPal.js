@@ -19,7 +19,7 @@ export default function PayPal() {
                 description: "1 Ticket",
                 amount: {
                   currency_code: "EUR",
-                  value: 50.00,
+                  value: price,
                 },
               },
             ],
