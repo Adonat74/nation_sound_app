@@ -77,7 +77,7 @@ export default function CreerMonCompte () {
                     withCredentials: true
                 }
             );
-            console.log(response)
+            //console.log(response)
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this

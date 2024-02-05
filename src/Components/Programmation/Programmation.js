@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { drupalAPI } from '../../api/axios';
-//import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import "./Programmation.css";
 
 export default function Programmation () {
 
-    //const { auth } = useAuth();
+    const { auth } = useAuth();
     const [daySelected, setDaySelected] = useState("1");
     const [artistesData, setArtistesData] = useState([]);
     const [scene, setScene] = useState("");
 
-    //let genre = auth.favoriteMusicGenre;
+    let genre = auth.favoriteMusicGenre;
 
     function handleRadioChange (event) {
         setDaySelected(() => {
@@ -32,25 +32,16 @@ export default function Programmation () {
 
     useEffect(() => {
         drupalAPI.get(`/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
-            .then(res => setArtistesData(res.data.data));
+            .then(res => {
+                let sorted = res.data.data.sort((x) => x.attributes.field_music_genre === genre ? -1 : 0);
+                setArtistesData(sorted);
+            });
     }, [daySelected, scene, sceneQuery]);
 
 
 
     //console.log(genre)
 
-    
-
-    // useEffect(() => {
-    //     if (auth.email && genre !== 'aucun') {
-    //         let data = artistesData;
-    //         let sorted = data.sort((x) => x.attributes.field_music_genre === genre ? -1 : 0);
-    //         setArtistesData(sorted);
-    //         console.log(sorted);
-    //     } 
-    // }, [artistesData]);
-
-    //console.log(artistesData)
 
 
     const artiste = artistesData.map(data => {
