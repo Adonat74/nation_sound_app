@@ -1,12 +1,15 @@
-.App {
+.Appli {
   position: relative;
-  min-height: 85vh;
+  min-height: 100vh;
 } 
+
+
 
 
 .space {
     padding-bottom: 220px;
     padding-top: 20px;
 }
+
 
 

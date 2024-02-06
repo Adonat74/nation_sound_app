@@ -44,7 +44,7 @@ export default function App() {
 
 
   return (
-    <div className="App">
+    <div className="Appli">
       
 
       <Header toggleMenu={toggleMenu} setMenuToggle={setMenuToggle} />
@@ -52,33 +52,31 @@ export default function App() {
       {menuToggle ? <MenuDeroulant toggleMenu={toggleMenu} /> : null}
 
       
-      <section className="mainContent">
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            {menuToggle ? null : <Route path="/" element={<Accueil />} />}
-            {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
-            {menuToggle ? null : <Route path="/carte" element={<Carte />} />}
-            {menuToggle ? null : <Route path="/mon-compte/creer" element={<CreerMonCompte />} />}
-            {menuToggle ? null : <Route path="/mon-compte/connexion" element={<Connexion />} />}
-            
-            {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
-            {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
-            {menuToggle ? null : <Route path="/FAQ" element={<FAQ />} />}
-            {menuToggle ? null : <Route path="/page-artiste/:artistTitle" element={<PageArtiste />} />}
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {menuToggle ? null : <Route path="/" element={<Accueil />} />}
+          {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
+          {menuToggle ? null : <Route path="/carte" element={<Carte />} />}
+          {menuToggle ? null : <Route path="/mon-compte/creer" element={<CreerMonCompte />} />}
+          {menuToggle ? null : <Route path="/mon-compte/connexion" element={<Connexion />} />}
+          
+          {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
+          {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
+          {menuToggle ? null : <Route path="/FAQ" element={<FAQ />} />}
+          {menuToggle ? null : <Route path="/page-artiste/:artistTitle" element={<PageArtiste />} />}
 
-            {/* we want to protect these routes */}
-            <Route element={<RequireAuth />}>
-              {menuToggle ? null : <Route path="/mon-compte/modifier" element={<ModifierMonCompte />} />}
-              {menuToggle ? null : <Route path="/mon-compte" element={<MonCompte />} />}
-              {menuToggle ? null : <Route path="/checkout" element={<PayPal />} />}
-            </Route>
-
-            {/* catch all */}
-            {menuToggle ? null : <Route path="*" element={<Missing />} />}
-
+          {/* Les routes à sécuriser */}
+          <Route element={<RequireAuth />}>
+            {menuToggle ? null : <Route path="/mon-compte/modifier" element={<ModifierMonCompte />} />}
+            {menuToggle ? null : <Route path="/mon-compte" element={<MonCompte />} />}
+            {menuToggle ? null : <Route path="/checkout" element={<PayPal />} />}
           </Route>
-        </Routes>
-      </section>
+
+          {/* Si l'url n'existe pas */}
+          {menuToggle ? null : <Route path="*" element={<Missing />} />}
+
+        </Route>
+      </Routes>
       
       
       <div className={menuToggle || location.pathname === "/carte" ? null : "space"}></div>
