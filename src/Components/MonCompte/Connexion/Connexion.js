@@ -45,9 +45,9 @@ export default function Connexion () {
             );
             //console.log(response?.data);
             const token = response?.data?.token;
-            const favoriteMusicGenre = response?.data?.data.favoritemusicgenre;
-            const username = response?.data?.data.username;
-            setAuth({ email, username, password, favoriteMusicGenre, token });
+            const favoriteMusicGenre = response?.data?.data.favoriteMusicGenre;
+            const userName = response?.data?.data.userName;
+            setAuth({ email, userName, password, favoriteMusicGenre, token });
             setEmail('');
             setPassword('');
             navigate(from, { replace: true });

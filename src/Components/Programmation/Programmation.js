@@ -36,7 +36,7 @@ export default function Programmation () {
                 let sorted = res.data.data.sort((x) => x.attributes.field_music_genre === genre ? -1 : 0);
                 setArtistesData(sorted);
             });
-    }, [daySelected, scene, sceneQuery]);
+    }, [daySelected, scene, sceneQuery, genre]);
 
 
 
