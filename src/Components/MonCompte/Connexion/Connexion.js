@@ -1,9 +1,9 @@
-import { useRef, useState, useEffect } from "react"; 
+import { useRef, useState } from "react"; 
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { nodeAPI } from '../../../api/axios';
 import "./Connexion.css";
 import * as yup from "yup";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import useAuth from "../../../hooks/useAuth";
 
 
