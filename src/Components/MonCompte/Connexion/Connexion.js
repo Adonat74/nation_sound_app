@@ -81,7 +81,7 @@ export default function Connexion () {
                                 <label htmlFor="password">Mot de passe :</label>
                                 <Field name="password" type="password" id="password"/>
 
-                                <button>Se connecter</button>
+                                <button type="submit">Se connecter</button>
                             </Form>
                         )
                     }

@@ -1,64 +1,39 @@
-import { useRef, useEffect, useState } from "react";
-import './PayPal.css'
-
-export default function PayPal() {
-  const paypal = useRef();
-
-  const [price, setPrice] = useState(50);
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import React, { useState, useEffect } from 'react';
 
 
+export default function Paypal(props) {
 
-  useEffect(() => {
-    window.paypal
-      .Buttons({
-        createOrder: (data, actions, err) => {
-          return actions.order.create({
-            intent: "CAPTURE",
-            purchase_units: [
+
+  const onCreateOrder = (data, actions) => {
+      return actions.order.create({
+          purchase_units: [
               {
-                description: "1 Ticket",
-                amount: {
-                  currency_code: "EUR",
-                  value: price,
-                },
+                  amount: {
+                      value: props.price,
+                  },
               },
-            ],
-          });
-        },
-        onApprove: async (data, actions) => {
-          const order = await actions.order.capture();
-          console.log(order);
-        },
-        onError: (err) => {
-          console.log(err);
-        },
-      })
-      .render(paypal.current);
-  }, []);
+          ],
+      });
+  }
+
+
+  const onApproveOrder = (data,actions) => {
+      return actions.order.capture().then((details) => {
+          const name = details.payer.name.given_name;
+          alert(`Transaction completed by ${name}`);
+      });
+  }
 
   return (
-    <div className="paypal">
-        <div className="numberTicketSelect">
-            <h1>Billeterie</h1>
-            <p>1 Billet = 50.00 EUR</p>
-            <div>
-                <select 
-                    id="numberTicket" 
-                    value={price}
-                    onChange={(e) => setPrice(parseInt(e.target.value))}
-                >
-                    <option value="50">1 billet</option>
-                    <option value="100">2 billets</option>
-                    <option value="150">3 billets</option>
-                    <option value="200">4 billets</option>
-                </select>
+        <div className="paypal">
+            <div className="paypalContainer">
+                <PayPalButtons 
+                    style={{ layout: "vertical" }}
+                    createOrder={(data, actions) => onCreateOrder(data, actions)}
+                    onApprove={(data, actions) => onApproveOrder(data, actions)}
+                />
             </div>
-            <p>Total : € {price}</p>
         </div>
-        <div className="paypalContainer">
-            <h2>Règlement :</h2>
-            <div ref={paypal}></div>
-        </div>
-    </div>
-  );
+    );
 }
