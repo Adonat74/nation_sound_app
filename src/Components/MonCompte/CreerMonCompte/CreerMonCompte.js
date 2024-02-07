@@ -79,19 +79,19 @@ export default function CreerMonCompte () {
 
                                     <label htmlFor="email">Email:</label>
                                     <Field name="email" type="email" id="email"/>
-                                    <ErrorMessage name="email" component="span"/>
+                                    <ErrorMessage name="email" component="span" className="errorSpan"/>
 
                                     <label htmlFor="userName">Nom:</label>
                                     <Field name="userName" type="text" id="userName"/>
-                                    <ErrorMessage name="userName" component="span"/>
+                                    <ErrorMessage name="userName" component="span" className="errorSpan"/>
 
                                     <label htmlFor="password">Mot de passe:</label>
                                     <Field name="password" type="password" id="password"/>
-                                    <ErrorMessage name="password" component="span"/>
+                                    <ErrorMessage name="password" component="span" className="errorSpan"/>
 
                                     <label htmlFor="passwordConfirmation">Confirmer le mot de passe:</label>
                                     <Field name="passwordConfirmation" type="password" id="passwordConfirmation"/>
-                                    <ErrorMessage name="passwordConfirmation" component="span"/>
+                                    <ErrorMessage name="passwordConfirmation" component="span" className="errorSpan"/>
 
                                     <label htmlFor="favoriteMusicGenre">Choisissez votre genre de musique préféré:</label>
                                     <Field as="select" name="favoriteMusicGenre" id="favoriteMusicGenre" >

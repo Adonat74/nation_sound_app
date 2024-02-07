@@ -58,6 +58,10 @@
     margin-top: 20px;
 }
 
+.errorSpan {
+    color: black;
+}
+
 .creerMonCompteContainer > h2 {
     text-shadow: rgb(27, 20, 100) 2px 2px;
     font-size: 1.3rem;
