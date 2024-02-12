@@ -42,9 +42,10 @@ export default function Connexion () {
                     withCredentials: true 
                 }
             );
+            // Points d'interogation permettent de casser l'application si la structure des données attendues n'est pas la bonne'
             const token = response?.data?.token;
-            const favoriteMusicGenre = response?.data?.data.favoriteMusicGenre;
-            const userName = response?.data?.data.userName;
+            const favoriteMusicGenre = response?.data?.data?.favoriteMusicGenre;
+            const userName = response?.data?.data?.userName;
             setAuth({ ...formValues, userName, favoriteMusicGenre, token });
             navigate(from, { replace: true });
         } catch (err) {

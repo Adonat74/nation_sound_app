@@ -10,7 +10,7 @@ export default function Partenaires () {
 
     useEffect(() => {
         drupalAPI.get(`/partners`)
-            .then(res => setPartenairesData(res.data.data));
+            .then(res => setPartenairesData(res?.data?.data));
     }, []);
 
 

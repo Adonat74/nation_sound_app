@@ -14,7 +14,7 @@ export default function PageArtiste () {
 
     useEffect(() => {
         drupalAPI.get(`/artistes?filter[title]=${artistTitle}`)
-            .then(res => setArtisteData(res.data.data[0].attributes));
+            .then(res => setArtisteData(res?.data?.data[0]?.attributes));
     }, [artistTitle]);
     
     //console.log(artisteData);

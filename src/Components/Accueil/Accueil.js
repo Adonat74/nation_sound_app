@@ -9,10 +9,9 @@ export default function Accueil () {
 
     useEffect(() => {
         drupalAPI.get(`/artistes`)
-            .then(res => setArtistesDataAccueil(res.data.data));
+            .then(res => setArtistesDataAccueil(res?.data?.data));
     }, []);
  
-    //console.log(artistesDataAccueil);
 
     const artistesAccueil = artistesDataAccueil.map(data => {
 

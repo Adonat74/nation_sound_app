@@ -33,7 +33,7 @@ export default function Programmation () {
     useEffect(() => {
         drupalAPI.get(`/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
             .then(res => {
-                let sorted = res.data.data.sort((x) => x.attributes.field_music_genre === genre ? -1 : 0);
+                let sorted = res?.data?.data.sort((x) => x.attributes.field_music_genre === genre ? -1 : 0);
                 setArtistesData(sorted);
             });
     }, [daySelected, scene, sceneQuery, genre]);

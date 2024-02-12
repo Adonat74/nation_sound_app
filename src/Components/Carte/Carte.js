@@ -26,12 +26,12 @@ export default function Carte () {
 
     useEffect(() => {
         drupalAPI.get(`/lieux${catQuery}`)
-            .then(res => setMapData(res.data.data));
+            .then(res => setMapData(res?.data?.data));
     }, [catFilter, catQuery]);
 
     useEffect(() => {
         drupalAPI.get(`/artistes`)
-            .then(res => setSceneData(res.data.data));
+            .then(res => setSceneData(res?.data?.data));
     }, []);
 
 

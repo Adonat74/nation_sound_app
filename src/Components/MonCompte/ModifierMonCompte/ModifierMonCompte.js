@@ -26,11 +26,11 @@ export default function ModifierMonCompte () {
 
     //valeurs initiales des inputs
     const initialValues = {
-        email: auth.email,
-        userName: auth.userName,
+        email: auth?.email,
+        userName: auth?.userName,
         password: "",
         passwordConfirmation: "",
-        favoriteMusicGenre: auth.favoriteMusicGenre
+        favoriteMusicGenre: auth?.favoriteMusicGenre
     };
 
 
@@ -46,7 +46,7 @@ export default function ModifierMonCompte () {
             );
             // permet d'afficher la page de succès grace à un opération ternaire
             setSuccess(true);
-            let token = auth.token
+            let token = auth?.token
             setAuth({ ...formValues, token });
         } catch (err) {
             if (!err?.response) {

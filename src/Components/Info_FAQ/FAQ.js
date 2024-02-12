@@ -10,7 +10,7 @@ export default function FAQ () {
 
     useEffect(() => {
         drupalAPI.get(`/faq`)
-            .then(res => setFAQData(res.data.data));
+            .then(res => setFAQData(res?.data?.data));
     }, []);
 
     //console.log(FAQData);

@@ -14,7 +14,7 @@ export default function ModifierMonCompte () {
         setConfirmDelete(true)
     }
 
-    function unConfirmDeleteUser () {
+    function unconfirmDeleteUser () {
         setConfirmDelete(false)
     }
 
@@ -22,9 +22,7 @@ export default function ModifierMonCompte () {
         nodeAPI.delete("/api/deleteUser",
             { headers: {'Authorization': 'Bearer ' + auth?.token } }
         )
-        .then(res => res.data)
-        .then(res => console.log(res))
-        .catch(err => console.log(err.response));
+        // .catch(err => console.log(err?.response));
         setAuth({});
     }
 
@@ -39,7 +37,7 @@ export default function ModifierMonCompte () {
             {confirmDelete ? (
                 <section className="monCompteContainer">
                     <h1>Êtes vous sûr de vouloir supprimer ce compte?</h1>
-                    <button onClick={unConfirmDeleteUser} className="monCompteButtons">Non: revenir en arrière</button>
+                    <button onClick={unconfirmDeleteUser} className="monCompteButtons">Non: revenir en arrière</button>
                     <button onClick={deleteUser} className="monCompteButtons">Oui: Supprimer le compte</button>
                 </section>
             ) : (

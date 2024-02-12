@@ -10,7 +10,7 @@ export default function Informations () {
 
     useEffect(() => {
         drupalAPI.get(`/informations`)
-            .then(res => setInformationsData(res.data.data));
+            .then(res => setInformationsData(res?.data?.data));
     }, []);
 
     //console.log(informationsData);
