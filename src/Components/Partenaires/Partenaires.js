@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { drupalAPI } from '../../api/axios';
-import "./Partenaires.css"
+import "./Partenaires.css";
+import DOMPurify from 'dompurify';
+
 
 
 export default function Partenaires () {
@@ -13,17 +15,20 @@ export default function Partenaires () {
             .then(res => setPartenairesData(res?.data?.data));
     }, []);
 
-
     //console.log(partenairesData);
 
     const partenaires = partenairesData.map(data => {
+
+        let title = DOMPurify.sanitize(data.attributes.title);
+        let url = DOMPurify.sanitize(data.attributes.field_partners_logo_url.uri);
+
         return (
             <div className="partenaire" key={data.id}>
-                <img className="partenaire-logo" src={`${data.attributes.field_partners_logo_url.uri}`} alt={`${data.attributes.title}`}></img>
-                <h3 className="partenaire-title">{data.attributes.title}</h3>
+                <img className="partenaire-logo" src={`${url}`} alt={`${title}`}></img>
+                <h3 className="partenaire-title">{title}</h3>
             </div> 
-        )
-    })
+        );
+    });
     
 
     return(

@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { drupalAPI } from '../../api/axios';
+import DOMPurify from 'dompurify';
+
+
 
 
 export default function PageArtiste () {
@@ -19,15 +22,21 @@ export default function PageArtiste () {
     
     //console.log(artisteData);
 
+    
+    let url = DOMPurify.sanitize(artisteData.field_photo.uri);
+    let description = DOMPurify.sanitize(artisteData.field_description);
+    let hour = DOMPurify.sanitize(artisteData.field_heure);
+    let scene = DOMPurify.sanitize(artisteData.field_scene);
+
     return(
         <div className="pageArtist">
             <div className="pageArtistContainer">
-                <img className="artistImage" src={`${artisteData.field_photo.uri}`} alt={`${artistTitle}`}></img>
+                <img className="artistImage" src={`${url}`} alt={`${artistTitle}`}></img>
                 <div className="pageArtistText">
                     <h1 className="pageArtistTitle">{artistTitle}</h1>
-                    <p>Scène {artisteData.field_scene}</p>
-                    <p>{artisteData.field_heure}H</p>
-                    <p>{artisteData.field_description}</p>
+                    <p>Scène {scene}</p>
+                    <p>{hour}H</p>
+                    <p>{description}</p>
                 </div>
             </div>
         </div>

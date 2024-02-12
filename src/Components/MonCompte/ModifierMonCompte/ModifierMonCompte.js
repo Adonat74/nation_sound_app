@@ -54,7 +54,7 @@ export default function ModifierMonCompte () {
             } else if (err.response?.status === 409) {
                 setErrMsg("L'email est déjà utilisé");
             } else {
-                setErrMsg('La modification du compte à échouée')
+                setErrMsg('La modification du compte a échouée')
             }
         }
     }

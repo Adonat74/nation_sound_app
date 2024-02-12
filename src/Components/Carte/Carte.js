@@ -5,6 +5,7 @@ import { drupalAPI } from '../../api/axios';
 import 'leaflet/dist/leaflet.css';
 import { LatLngBounds, CRS, Icon } from "leaflet";
 import "./Carte.css";
+import DOMPurify from 'dompurify';
 
 export default function Carte () {
 
@@ -38,33 +39,45 @@ export default function Carte () {
 
     const markers = mapData.map(data => {
 
+        const category = DOMPurify.sanitize(data.attributes.field_categorie);
+
         const title = data.attributes.title;
-        const sceneNumber = title[title.length - 1];
+        const sceneNumber = DOMPurify.sanitize(title[title.length - 1]);
 
         const customIcon = new Icon({
-            iconUrl: `/images/icons/pin-${data.attributes.field_categorie}.svg`,
+            iconUrl: `/images/icons/pin-${category}.svg`,
             iconSize: [35, 35]
         });
 
         // eslint-disable-next-line
         const scene = sceneData.map(scene => {
-            if (scene.attributes.field_scene === parseInt(sceneNumber)) {
+
+            const sceneSanitized = DOMPurify.sanitize(scene.attributes.field_scene);
+            const titleSanitized = DOMPurify.sanitize(scene.attributes.title);
+
+
+            if (sceneSanitized === sceneNumber) {
                 return  (
                     <p key={scene.id}>
-                        {scene.attributes.title}
+                        {titleSanitized}
                     </p>
                 );
             }
         });
 
+        const lat = DOMPurify.sanitize(data.attributes.field_lat);
+        const lng = DOMPurify.sanitize(data.attributes.field_lng);
+        const descriptionLieu = DOMPurify.sanitize(data.attributes.field_description_lieu);
+
+
         
         return (
-            <Marker position={[data.attributes.field_lat, data.attributes.field_lng]} icon={customIcon} key={data.id}>
+            <Marker position={[lat, lng]} icon={customIcon} key={data.id}>
                 <Popup className="popup">
-                    <Link to={data.attributes.field_categorie === "scene" ? `/programmation` : ""}>
+                    <Link to={category === "scene" ? `/programmation` : ""}>
                         <h2 className="popupTitle">{title}</h2>
                         <div className="mapArtistes">
-                            <p>{data.attributes.field_categorie === "scene" ? "" : data.attributes.field_description_lieu}</p>
+                            <p>{category === "scene" ? "" : descriptionLieu}</p>
                             {scene}
                         </div>
                     </Link>

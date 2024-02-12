@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { drupalAPI } from '../../api/axios';
 import useAuth from "../../hooks/useAuth";
 import "./Programmation.css";
+import DOMPurify from 'dompurify';
 
 export default function Programmation () {
 
@@ -41,20 +42,25 @@ export default function Programmation () {
 
 
     //console.log(genre)
+    
 
 
 
     const artiste = artistesData.map(data => {
-        let title = data.attributes.title
+
+        let title = DOMPurify.sanitize(data.attributes.title);
+        let url = DOMPurify.sanitize(data.attributes.field_photo.uri);
+        let hour = DOMPurify.sanitize(data.attributes.field_heure);
+        let scene = DOMPurify.sanitize(data.attributes.field_scene);
 
         return (
             <div className="artistContainer" key={data.id}>
                 <Link to={`/page-artiste/${title}`}>
-                    <img className="miniature" src={`${data.attributes.field_photo.uri}`} alt={`${title}`}></img>
+                    <img className="miniature" src={`${url}`} alt={`${title}`}></img>
                     <div className="infoMiniature">
                         <h2>{title}</h2>
-                        <p>Scène {data.attributes.field_scene}</p>
-                        <p>{data.attributes.field_heure}H</p>
+                        <p>Scène {scene}</p>
+                        <p>{hour}H</p>
                     </div>
                 </Link>
             </div>

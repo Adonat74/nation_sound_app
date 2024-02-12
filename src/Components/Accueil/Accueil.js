@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { drupalAPI } from '../../api/axios';
 import "./Accueil.css";
+import DOMPurify from 'dompurify';
 
 export default function Accueil () {
 
@@ -15,16 +16,21 @@ export default function Accueil () {
 
     const artistesAccueil = artistesDataAccueil.map(data => {
 
-        let title = data.attributes.title;
+        // sanitize data that is rendered in the html tags
+        let title = DOMPurify.sanitize(data.attributes.title);
+        let url = DOMPurify.sanitize(data.attributes.field_photo.uri);
+        let day = DOMPurify.sanitize(data.attributes.field_day);
+        let hour = DOMPurify.sanitize(data.attributes.field_heure);
+        let scene = DOMPurify.sanitize(data.attributes.field_scene);
 
         return (
             <div className="artistContainerAccueil" key={data.id}>
                 <Link to={`/page-artiste/${title}`}>
-                    <img className="miniature" src={`${data.attributes.field_photo.uri}`} alt={`${title}`}></img>
+                    <img className="miniature" src={`${url}`} alt={`${title}`}></img>
                     <div className="infoMiniature">
                         <h2>{title}</h2>
-                        <p>Jour {data.attributes.field_day} - {data.attributes.field_heure}H</p>
-                        <p>Scène {data.attributes.field_scene}</p>
+                        <p>Jour {day} - {hour}H</p>
+                        <p>Scène {scene}</p>
                     </div>
                 </Link>
             </div>

@@ -33,7 +33,6 @@ export default function CreerMonCompte () {
 
     const handleSubmit = async (formValues) => {
         try {
-            console.log(formValues)
             await nodeAPI.post("/api/createUser",
                 formValues,
                 {
@@ -49,7 +48,7 @@ export default function CreerMonCompte () {
             } else if (err.response?.status === 400) {
                 setErrMsg("L'email est déjà utilisé");
             } else {
-                setErrMsg('La création du compte à échouée')
+                setErrMsg('La création du compte a échouée')
             }
         }
     }

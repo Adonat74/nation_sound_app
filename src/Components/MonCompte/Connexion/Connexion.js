@@ -5,6 +5,7 @@ import "./Connexion.css";
 import * as yup from "yup";
 import { Formik, Field, Form } from "formik";
 import useAuth from "../../../hooks/useAuth";
+import DOMPurify from 'dompurify';
 
 
 const validationSchema = yup.object().shape({
@@ -43,9 +44,9 @@ export default function Connexion () {
                 }
             );
             // Points d'interogation permettent de casser l'application si la structure des données attendues n'est pas la bonne'
-            const token = response?.data?.token;
-            const favoriteMusicGenre = response?.data?.data?.favoriteMusicGenre;
-            const userName = response?.data?.data?.userName;
+            const token = DOMPurify.sanitize(response?.data?.token);
+            const favoriteMusicGenre = DOMPurify.sanitize(response?.data?.data?.favoriteMusicGenre);
+            const userName = DOMPurify.sanitize(response?.data?.data?.userName);
             setAuth({ ...formValues, userName, favoriteMusicGenre, token });
             navigate(from, { replace: true });
         } catch (err) {
@@ -56,7 +57,7 @@ export default function Connexion () {
             } else if (err.response?.status === 401) {
                 setErrMsg('Pas autorisé');
             } else {
-                setErrMsg('La connexion à échoué');
+                setErrMsg('La connexion a échoué');
             }
         }
     }
