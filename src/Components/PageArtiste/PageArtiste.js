@@ -4,7 +4,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { drupalAPI } from '../../api/axios';
 import DOMPurify from 'dompurify';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 
 

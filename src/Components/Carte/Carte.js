@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { LatLngBounds, CRS, Icon } from "leaflet";
 import "./Carte.css";
 import DOMPurify from 'dompurify';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 export default function Carte () {
 

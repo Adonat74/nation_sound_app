@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { drupalAPI } from '../../api/axios';
 import "./Partenaires.css";
 import DOMPurify from 'dompurify';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -26,7 +26,7 @@ export default function Partenaires () {
         return (
             <div className="partenaire" key={data.id}>
                 <img className="partenaire-logo" src={`${url}`} alt={`${title}`}></img>
-                <h3 className="partenaire-title">{title}</h3>
+                <p className="partenaire-title">{title}</p>
             </div> 
         );
     });

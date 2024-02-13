@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { nodeAPI } from '../../api/axios';
 import "./MonCompte.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 export default function ModifierMonCompte () {
 
@@ -48,7 +48,7 @@ export default function ModifierMonCompte () {
                 </section>
             ) : (
                 <section className="monCompteContainer">
-                    <h2 className="connexionTitle ">mon compte</h2>
+                    <h1 className="connexionTitle ">mon compte</h1>
                     <Link className="monCompteButtons" to="/mon-compte/modifier">Modifier mon compte</Link>
                     <button onClick={confirmDeleteUser} className="monCompteButtons">Supprimer le compte</button>
                     <button onClick={disconnect} className="monCompteButtons">Se déconnecter</button>

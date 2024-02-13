@@ -5,7 +5,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import useAuth from "../../../hooks/useAuth";
 import * as yup from "yup";
 import "./ModifierMonCompte.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 // chemin de validation yup //permet de valider le formulaire
 const validationSchema = yup.object().shape({

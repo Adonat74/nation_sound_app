@@ -20,6 +20,9 @@ import RequireAuth from './Components/RequireAuth';
 import { Routes, Route, useLocation } from "react-router-dom";
 import Checkout from "./Components/Paypal/Checkout";
 
+import { HelmetProvider } from 'react-helmet-async';
+
+
 
 
 
@@ -48,43 +51,46 @@ export default function App() {
   return (
     <div className="Appli">
       
+      {/* permet d'éviter le problème rencontré avec le strict mode de react et helmet */}
+      <HelmetProvider>
 
-      <Header toggleMenu={toggleMenu} setMenuToggle={setMenuToggle} />
-              
-      {menuToggle ? <MenuDeroulant toggleMenu={toggleMenu} /> : null}
+        <Header toggleMenu={toggleMenu} setMenuToggle={setMenuToggle} />
+                
+        {menuToggle ? <MenuDeroulant toggleMenu={toggleMenu} /> : null}
 
-      
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          {menuToggle ? null : <Route path="/accueil" element={<Accueil />} />}
-          {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
-          {menuToggle ? null : <Route path="/carte" element={<Carte />} />}
-          {menuToggle ? null : <Route path="/mon-compte/creer" element={<CreerMonCompte />} />}
-          {menuToggle ? null : <Route path="/mon-compte/connexion" element={<Connexion />} />}
-          
-          {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
-          {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
-          {menuToggle ? null : <Route path="/foire-aux-quetions" element={<FAQ />} />}
-          {menuToggle ? null : <Route path="/page-artiste/:artistTitle" element={<PageArtiste />} />}
+        
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            {menuToggle ? null : <Route path="/" element={<Accueil />} />}
+            {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
+            {menuToggle ? null : <Route path="/carte" element={<Carte />} />}
+            {menuToggle ? null : <Route path="/mon-compte/creer" element={<CreerMonCompte />} />}
+            {menuToggle ? null : <Route path="/mon-compte/connexion" element={<Connexion />} />}
+            
+            {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
+            {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
+            {menuToggle ? null : <Route path="/foire-aux-quetions" element={<FAQ />} />}
+            {menuToggle ? null : <Route path="/page-artiste/:artistTitle" element={<PageArtiste />} />}
 
-          {/* Les routes à sécuriser */}
-          <Route element={<RequireAuth />}>
-            {menuToggle ? null : <Route path="/mon-compte/modifier" element={<ModifierMonCompte />} />}
-            {menuToggle ? null : <Route path="/mon-compte" element={<MonCompte />} />}
-            {menuToggle ? null : <Route path="/paiement" element={<Checkout />} />}
+            {/* Les routes à sécuriser */}
+            <Route element={<RequireAuth />}>
+              {menuToggle ? null : <Route path="/mon-compte/modifier" element={<ModifierMonCompte />} />}
+              {menuToggle ? null : <Route path="/mon-compte" element={<MonCompte />} />}
+              {menuToggle ? null : <Route path="/paiement" element={<Checkout />} />}
+            </Route>
+
+            {/* Si l'url n'existe pas */}
+            {menuToggle ? null : <Route path="*" element={<Missing />} />}
+
           </Route>
+        </Routes>
+        
+        
+        <div className={menuToggle || location.pathname === "/carte" ? null : "space"}></div>
 
-          {/* Si l'url n'existe pas */}
-          {menuToggle ? null : <Route path="*" element={<Missing />} />}
+        {menuToggle || location.pathname === "/carte" ? null : <Footer />}
 
-        </Route>
-      </Routes>
-      
-      
-      <div className={menuToggle || location.pathname === "/carte" ? null : "space"}></div>
-
-      {menuToggle || location.pathname === "/carte" ? null : <Footer />}
-      
+      </HelmetProvider>
     </div>
   );
 }

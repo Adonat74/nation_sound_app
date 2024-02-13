@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { drupalAPI } from '../../api/axios';
 import "./Info_FAQ.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 
 export default function FAQ () {

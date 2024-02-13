@@ -4,7 +4,7 @@ import { nodeAPI } from '../../../api/axios';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import "./CreerMonCompte.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 // chemin de validation yup //permet de valider le formulaire
 const validationSchema = yup.object().shape({

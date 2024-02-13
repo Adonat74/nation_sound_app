@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { Formik, Field, Form } from "formik";
 import useAuth from "../../../hooks/useAuth";
 import DOMPurify from 'dompurify';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 
 const validationSchema = yup.object().shape({
@@ -66,7 +66,7 @@ export default function Connexion () {
 
 
     return(
-        <section className="connexion">
+        <div className="connexion">
             <Helmet>
                 <title>Nation-Sound Festival - Connexion</title>
                 <meta name="title" content="Nation-Sound Festival - Connexion" />
@@ -97,8 +97,7 @@ export default function Connexion () {
                 <h2>Pas de compte?</h2>
                 <Link to="/mon-compte/creer">Créer un compte</Link>
             </div>
-            
-        </section>
+        </div>
     );
 }
 

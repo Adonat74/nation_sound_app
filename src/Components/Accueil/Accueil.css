@@ -67,6 +67,12 @@
     overflow: auto;
 }
 
+.infoMiniatureAccueil > h3 {
+    font-size: 1.3rem;
+    margin: 7px 0 10px;
+    min-width: 120px;
+}
+
 .minimapContainer {
     display: flex;
     flex-direction: column;

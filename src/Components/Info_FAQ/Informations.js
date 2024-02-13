@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { drupalAPI } from '../../api/axios';
 import "./Info_FAQ.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 export default function Informations () {
 
@@ -33,9 +33,7 @@ export default function Informations () {
                 <meta name="description" content="Tenez-vous informés des dernières nouvelles et informations concernant le festival." />
             </Helmet>
             <h1>Informations</h1>
-            <div>
-                {informations}
-            </div>
+            {informations}
         </div>
     );
 }
