@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { drupalAPI } from '../../api/axios';
 import "./Accueil.css";
 import DOMPurify from 'dompurify';
+import { Helmet } from "react-helmet";
 
 export default function Accueil () {
 
@@ -42,9 +43,14 @@ export default function Accueil () {
 
     return(
         <div className="accueil">
+            <Helmet>
+                <title>Nation-Sound Festival - Accueil</title>
+                <meta name="title" content="Nation-Sound Festival - Accueil" />
+                <meta name="description" content="Nation-Sound est un festival de musique qui ce déroule à Paris. Les artistes et les genres de musique seront variés, electro, jazz, pop, rap, rock, reggae." />
+            </Helmet>
             <h1>Accueil</h1>
             <div>
-            <Link to="/checkout"><button className="billetterieButton">Billetterie<img src="/images/icons/arrow-right.svg" alt="flèche à droite"></img></button></Link>
+            <Link to="/paiement"><button className="billetterieButton">Billetterie<img src="/images/icons/arrow-right.svg" alt="flèche à droite"></img></button></Link>
             </div>
             <h2>Liste de tous les concerts</h2>
 

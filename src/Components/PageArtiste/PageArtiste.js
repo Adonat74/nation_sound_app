@@ -4,6 +4,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { drupalAPI } from '../../api/axios';
 import DOMPurify from 'dompurify';
+import { Helmet } from "react-helmet";
 
 
 
@@ -30,6 +31,11 @@ export default function PageArtiste () {
 
     return(
         <div className="pageArtist">
+            <Helmet>
+                <title>Nation-Sound Festival - {artistTitle}</title>
+                <meta name="title" content={`Nation-Sound Festival - ${artistTitle}`} />
+                <meta name="description" content={`${artistTitle} - ${description}`} />
+            </Helmet>
             <div className="pageArtistContainer">
                 <img className="artistImage" src={`${url}`} alt={`${artistTitle}`}></img>
                 <div className="pageArtistText">

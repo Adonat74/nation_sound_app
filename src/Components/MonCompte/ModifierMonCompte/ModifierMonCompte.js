@@ -5,6 +5,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import useAuth from "../../../hooks/useAuth";
 import * as yup from "yup";
 import "./ModifierMonCompte.css";
+import { Helmet } from "react-helmet";
 
 // chemin de validation yup //permet de valider le formulaire
 const validationSchema = yup.object().shape({
@@ -62,6 +63,11 @@ export default function ModifierMonCompte () {
 
     return (
         <div className="creerMonCompte">
+            <Helmet>
+                <title>Nation-Sound Festival - Modifier Mon Compte</title>
+                <meta name="title" content="Nation-Sound Festival - Modifier Mon Compte" />
+                <meta name="description" content="Modifiez les informations de votre compte." />
+            </Helmet>
             {/*Opération ternaire pour aficher la page de succès*/}
             {success ? (
                  <section className="modifierMonCompteContainer">

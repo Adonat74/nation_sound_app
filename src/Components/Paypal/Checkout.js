@@ -2,6 +2,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useState } from 'react';
 import Paypal from './Paypal';
 import './Checkout.css'
+import { Helmet } from "react-helmet";
 
 const initialOptions = {
     "client-id": "AcXDOsYzLskTO4VmEVLsRkbq3SGV2yhs4s8BTlBC7ar9iJGhHGrxj88m4MIvUo7Gx3SnxonogODiSJw6",
@@ -17,6 +18,11 @@ export default function Checkout() {
 
   return (
     <div className="checkout">
+        <Helmet>
+            <title>Nation-Sound Festival - Paiement</title>
+            <meta name="title" content="Nation-Sound Festival - Paiement" />
+            <meta name="description" content="Paiement." />
+        </Helmet>
         <div className="numberTicketSelect">
             <h1>Billeterie</h1>
             <p>1 Billet = 50.00 EUR</p>

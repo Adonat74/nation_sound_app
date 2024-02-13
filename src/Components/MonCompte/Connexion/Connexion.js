@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { Formik, Field, Form } from "formik";
 import useAuth from "../../../hooks/useAuth";
 import DOMPurify from 'dompurify';
+import { Helmet } from "react-helmet";
 
 
 const validationSchema = yup.object().shape({
@@ -66,6 +67,11 @@ export default function Connexion () {
 
     return(
         <section className="connexion">
+            <Helmet>
+                <title>Nation-Sound Festival - Connexion</title>
+                <meta name="title" content="Nation-Sound Festival - Connexion" />
+                <meta name="description" content="Connectez-vous à votre compte pour acheter des billets ou pour avoir des recommandations d'artistes personalisées." />
+            </Helmet>
             <div className="connexionContainer">
                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
                 <h1 className="connexionTitle">Connexion</h1>

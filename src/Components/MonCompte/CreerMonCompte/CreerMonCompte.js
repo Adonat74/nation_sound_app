@@ -4,6 +4,7 @@ import { nodeAPI } from '../../../api/axios';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import "./CreerMonCompte.css";
+import { Helmet } from "react-helmet";
 
 // chemin de validation yup //permet de valider le formulaire
 const validationSchema = yup.object().shape({
@@ -56,6 +57,11 @@ export default function CreerMonCompte () {
 
     return (
         <div className="creerMonCompte">
+            <Helmet>
+                <title>Nation-Sound Festival - Créer Un Compte</title>
+                <meta name="title" content="Nation-Sound Festival - Créer Un Compte" />
+                <meta name="description" content="Créez un compte pour acheter des billets ou pour avoir des recommandations d'artistes personalisées." />
+            </Helmet>
             {/*Opération ternaire pour aficher la page de succès*/}
             {success ? (
                  <section className="creerMonCompteContainer">

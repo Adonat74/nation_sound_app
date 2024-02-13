@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { drupalAPI } from '../../api/axios';
 import "./Partenaires.css";
 import DOMPurify from 'dompurify';
+import { Helmet } from "react-helmet";
 
 
 
@@ -33,6 +34,11 @@ export default function Partenaires () {
 
     return(
         <div className="partenaires">
+            <Helmet>
+                <title>Nation-Sound Festival - Partenaires</title>
+                <meta name="title" content="Nation-Sound Festival - Partenaires" />
+                <meta name="description" content="Les partenaires du festival." />
+            </Helmet>
             {partenaires}
         </div>
     );

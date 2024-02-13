@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { LatLngBounds, CRS, Icon } from "leaflet";
 import "./Carte.css";
 import DOMPurify from 'dompurify';
+import { Helmet } from "react-helmet";
 
 export default function Carte () {
 
@@ -93,6 +94,11 @@ export default function Carte () {
 
     return(
         <div id="map">
+            <Helmet>
+                <title>Nation-Sound Festival - Carte</title>
+                <meta name="title" content="Nation-Sound Festival - Carte" />
+                <meta name="description" content="Trouvez le lieu des différents restaurants, bars, toilettes et les scènes qui composent le festival grâce à la carte interactive." />
+            </Helmet>
             <div className="filter">
                 <select
                 value={catFilter}

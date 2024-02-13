@@ -1,3 +1,13 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /mon-compte
+Disallow: /mon-compte/*
+Disallow: /informations
+Disallow: /partenaires
+Disallow: /FAQ
+Disallow: /checkout
+Disallow: /checkout/paypal
+
+#sitemap
+
+Sitemap: mon-domaine/sitemap.txt

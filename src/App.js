@@ -19,7 +19,6 @@ import React from 'react';
 import RequireAuth from './Components/RequireAuth';
 import { Routes, Route, useLocation } from "react-router-dom";
 import Checkout from "./Components/Paypal/Checkout";
-import Paypal from "./Components/Paypal/Paypal";
 
 
 
@@ -57,7 +56,7 @@ export default function App() {
       
       <Routes>
         <Route path="/" element={<Layout />}>
-          {menuToggle ? null : <Route path="/" element={<Accueil />} />}
+          {menuToggle ? null : <Route path="/accueil" element={<Accueil />} />}
           {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
           {menuToggle ? null : <Route path="/carte" element={<Carte />} />}
           {menuToggle ? null : <Route path="/mon-compte/creer" element={<CreerMonCompte />} />}
@@ -65,15 +64,14 @@ export default function App() {
           
           {menuToggle ? null : <Route path="/informations" element={<Informations />} />}
           {menuToggle ? null : <Route path="/partenaires" element={<Partenaires />} />}
-          {menuToggle ? null : <Route path="/FAQ" element={<FAQ />} />}
+          {menuToggle ? null : <Route path="/foire-aux-quetions" element={<FAQ />} />}
           {menuToggle ? null : <Route path="/page-artiste/:artistTitle" element={<PageArtiste />} />}
 
           {/* Les routes à sécuriser */}
           <Route element={<RequireAuth />}>
             {menuToggle ? null : <Route path="/mon-compte/modifier" element={<ModifierMonCompte />} />}
             {menuToggle ? null : <Route path="/mon-compte" element={<MonCompte />} />}
-            {menuToggle ? null : <Route path="/checkout" element={<Checkout />} />}
-            {menuToggle ? null : <Route path="/checkout/paypal" element={<Paypal />} />}
+            {menuToggle ? null : <Route path="/paiement" element={<Checkout />} />}
           </Route>
 
           {/* Si l'url n'existe pas */}

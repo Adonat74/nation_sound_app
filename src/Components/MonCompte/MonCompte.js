@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { nodeAPI } from '../../api/axios';
 import "./MonCompte.css";
+import { Helmet } from "react-helmet";
 
 export default function ModifierMonCompte () {
 
@@ -34,6 +35,11 @@ export default function ModifierMonCompte () {
 
     return(
         <div className="monCompte">
+            <Helmet>
+                <title>Nation-Sound Festival - Mon Compte</title>
+                <meta name="title" content="Nation-Sound Festival - Mon Compte" />
+                <meta name="description" content="Modifiez ou supprimez les informations de votre compte." />
+            </Helmet>
             {confirmDelete ? (
                 <section className="monCompteContainer">
                     <h1>Êtes vous sûr de vouloir supprimer ce compte?</h1>
@@ -46,7 +52,7 @@ export default function ModifierMonCompte () {
                     <Link className="monCompteButtons" to="/mon-compte/modifier">Modifier mon compte</Link>
                     <button onClick={confirmDeleteUser} className="monCompteButtons">Supprimer le compte</button>
                     <button onClick={disconnect} className="monCompteButtons">Se déconnecter</button>
-                    <Link to="/checkout" className="monCompteButtons">Billetterie</Link>
+                    <Link to="/paiement" className="monCompteButtons">Billetterie</Link>
                 </section>
             )} 
         </div>
