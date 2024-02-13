@@ -18,8 +18,8 @@ import './App.css';
 import React from 'react';
 import RequireAuth from './Components/RequireAuth';
 import { Routes, Route, useLocation } from "react-router-dom";
-import Checkout from "./Paypal/Checkout";
-import Paypal from "./Paypal/Paypal";
+import Checkout from "./Components/Paypal/Checkout";
+import Paypal from "./Components/Paypal/Paypal";
 
 
 
