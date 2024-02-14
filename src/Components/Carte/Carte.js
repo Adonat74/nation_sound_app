@@ -15,6 +15,8 @@ export default function Carte () {
     const [catFilter, setCatFilter] = useState("");
     const [mapData, setMapData] = useState([]);
     const [sceneData, setSceneData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
     
 
     function handleChangeCat (event) {
@@ -26,17 +28,36 @@ export default function Carte () {
 
     let catQuery = catFilter === "" ? "" : `?filter[field_categorie]=${catFilter}`;
 
+    // get data asynchronously
     useEffect(() => {
-        drupalAPI.get(`/lieux${catQuery}`)
-            .then(res => setMapData(res?.data?.data));
+        async function getData () {
+            try {
+                await drupalAPI.get(`/lieux${catQuery}`)
+                    .then(res => setMapData(res?.data?.data));
+            } catch (error) {
+                setError(error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        getData();     
     }, [catFilter, catQuery]);
 
+
+    // get data asynchronously
     useEffect(() => {
-        drupalAPI.get(`/artistes`)
-            .then(res => setSceneData(res?.data?.data));
+        async function getData () {
+            try {
+                await drupalAPI.get(`/artistes`)
+                    .then(res => setSceneData(res?.data?.data));
+            } catch (error) {
+                setError(error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        getData();     
     }, []);
-
-
 
     const markers = mapData.map(data => {
 
@@ -90,39 +111,50 @@ export default function Carte () {
 
 
 
+    // permet d'afficher une page d'erreur plutot que de faire crasher toute l'application lors du get
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
 
 
     return(
-        <div id="map">
+        <div>
             <Helmet>
                 <title>Nation-Sound Festival - Carte</title>
                 <meta name="title" content="Nation-Sound Festival - Carte" />
                 <meta name="description" content="Trouvez le lieu des différents restaurants, bars, toilettes et les scènes qui composent le festival grâce à la carte interactive." />
             </Helmet>
-            <div className="filter">
-                <select
-                value={catFilter}
-                onChange={handleChangeCat}
-                name="catChoice"
-                className="catFilter">
-                    <option value="">Toutes les catégories</option>
-                    <option value="scene">Scènes</option>
-                    <option value="restauration">Restauration</option>
-                    <option value="buvette">Buvettes</option>
-                    <option value="toilettes">Toilettes</option>
-                </select>
-            </div>
+            {/* Affiche Loading... le temps que les artiste soient chargés */}
+            {isLoading ? (
+                <div className="loadingContainer">
+                    <div className="loading">Loading…</div>
+                </div>
+            ) : (
+                <div id="map">
+                    <div className="filter">
+                        <select
+                        value={catFilter}
+                        onChange={handleChangeCat}
+                        name="catChoice"
+                        className="catFilter">
+                            <option value="">Toutes les catégories</option>
+                            <option value="scene">Scènes</option>
+                            <option value="restauration">Restauration</option>
+                            <option value="buvette">Buvettes</option>
+                            <option value="toilettes">Toilettes</option>
+                        </select>
+                    </div>
 
-
-
-            <MapContainer center={[250, 500]} zoom={0} maxZoom={3} scrollWheelZoom={true} crs={CRS.Simple}>
-                <ImageOverlay
-                    url="images/map.png"
-                    bounds={bounds}
-                    zIndex={10}                  
-                />
-                {markers}  
-            </MapContainer>
+                    <MapContainer center={[250, 500]} zoom={0} maxZoom={3} scrollWheelZoom={true} crs={CRS.Simple}>
+                        <ImageOverlay
+                            url="images/map.png"
+                            bounds={bounds}
+                            zIndex={10}                  
+                        />
+                        {markers}  
+                    </MapContainer>
+                </div>
+            )}  
         </div>
     );
 }

@@ -10,7 +10,7 @@ export default function Footer () {
         <footer className="footer">
             <Link to="/partenaires"><button className="partenairesButton">Partenaires<img src="/images/icons/arrow-right.svg" alt="flèche pointant vers la droite"></img></button></Link>
             <div className="reseauxSociaux">
-                <h3 className="followUs">Nos réseaux sociaux</h3>
+                <h4 className="followUs">Nos réseaux sociaux</h4>
                 <div className="footerLogos">
                     <img src="/images/icons/square-facebook-choco-pap.svg" alt="Facebook"></img>
                     <img src="/images/icons/instagram-choco-pap.svg" alt="Instagram"></img>
