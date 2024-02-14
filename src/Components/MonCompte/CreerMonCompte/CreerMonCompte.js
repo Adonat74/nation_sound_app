@@ -83,23 +83,23 @@ export default function CreerMonCompte () {
                                 <Form className="creerMonCompteForm">
 
                                     <label htmlFor="email">Email:</label>
-                                    <Field name="email" type="email" id="email" autofocus/>
+                                    <Field name="email" type="email" id="email" autofocus aria-label="Champ requis"/>
                                     <ErrorMessage name="email" component="span" className="errorSpan"/>
 
                                     <label htmlFor="userName">Nom:</label>
-                                    <Field name="userName" type="text" id="userName"/>
+                                    <Field name="userName" type="text" id="userName" aria-label="Champ requis, de 4 à 24 caractères. Doit commencer avec une lettre. Lettres, nombres, underscores, traits d'union autorisés."/>
                                     <ErrorMessage name="userName" component="span" className="errorSpan"/>
 
                                     <label htmlFor="password">Mot de passe:</label>
-                                    <Field name="password" type="password" id="password"/>
+                                    <Field name="password" type="password" id="password" aria-label="Champ requis, de 10 à 24 caractères. Doit inclure au moin une minuscule, une majuscule, un nombre et un caractère spéciale. Caractères spéciales autorisés: ! @ # $ %"/>
                                     <ErrorMessage name="password" component="span" className="errorSpan"/>
 
                                     <label htmlFor="passwordConfirmation">Confirmer le mot de passe:</label>
-                                    <Field name="passwordConfirmation" type="password" id="passwordConfirmation"/>
+                                    <Field name="passwordConfirmation" type="password" id="passwordConfirmation" aria-label="Champ requis"/>
                                     <ErrorMessage name="passwordConfirmation" component="span" className="errorSpan"/>
 
                                     <label htmlFor="favoriteMusicGenre">Choisissez votre genre de musique préféré:</label>
-                                    <Field as="select" name="favoriteMusicGenre" id="favoriteMusicGenre" >
+                                    <Field as="select" name="favoriteMusicGenre" id="favoriteMusicGenre">
                                         <option value="aucun">Aucun</option>
                                         <option value="rap">Rap</option>
                                         <option value="electro">Electro</option>

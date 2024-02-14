@@ -4,8 +4,6 @@ import "./Footer.css"
 
 export default function Footer () {
 
-
-
     return(
         <footer className="footer">
             <Link to="/partenaires" className="partenairesButton">Partenaires<img src="/images/icons/arrow-right.svg" alt="flèche pointant vers la droite" loading="lazy"></img></Link>
