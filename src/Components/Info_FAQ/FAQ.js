@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { drupalAPI } from '../../api/axios';
 import "./Info_FAQ.css";
+import DOMPurify from 'dompurify';
 import { Helmet } from 'react-helmet-async';
 
 
@@ -28,10 +29,14 @@ export default function FAQ () {
 
 
     const FAQ = FAQData.map(data => {
+
+        let title = DOMPurify.sanitize(data.attributes.title);
+        let response = DOMPurify.sanitize(data.attributes.field_reponse);
+
         return (
             <div className="question" key={data.id}>
-                <h2>{data.attributes.title}</h2>
-                <p>{data.attributes.field_reponse}</p>
+                <h2>{title}</h2>
+                <p>{response}</p>
             </div> 
         );
     });

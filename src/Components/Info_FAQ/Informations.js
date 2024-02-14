@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { drupalAPI } from '../../api/axios';
 import "./Info_FAQ.css";
+import DOMPurify from 'dompurify';
 import { Helmet } from 'react-helmet-async';
 
 export default function Informations () {
@@ -25,17 +26,16 @@ export default function Informations () {
         getData();     
     }, []);
 
-    // useEffect(() => {
-    //     drupalAPI.get(`/informations`)
-    //         .then(res => setInformationsData(res?.data?.data));
-    // }, []);
-
 
     const informations = informationsData.map(data => {
+
+        let title = DOMPurify.sanitize(data.attributes.title);
+        let information = DOMPurify.sanitize(data.attributes.field_description_information);
+
         return (
             <div className="information" key={data.id}>
-                <h2>{data.attributes.title}</h2>
-                <p>{data.attributes.field_description_information}</p>
+                <h2>{title}</h2>
+                <p>{information}</p>
             </div> 
         );
     });
