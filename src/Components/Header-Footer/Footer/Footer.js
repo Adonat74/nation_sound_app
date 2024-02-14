@@ -8,7 +8,7 @@ export default function Footer () {
 
     return(
         <footer className="footer">
-            <Link to="/partenaires"><button className="partenairesButton">Partenaires<img src="/images/icons/arrow-right.svg" alt="flèche pointant vers la droite" loading="lazy"></img></button></Link>
+            <Link to="/partenaires" className="partenairesButton">Partenaires<img src="/images/icons/arrow-right.svg" alt="flèche pointant vers la droite" loading="lazy"></img></Link>
             <div className="reseauxSociaux">
                 <h4 className="followUs">Nos réseaux sociaux</h4>
                 <div className="footerLogos">

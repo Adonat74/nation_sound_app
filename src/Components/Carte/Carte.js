@@ -158,7 +158,7 @@ export default function Carte () {
                         scrollWheelZoom={true} 
                         crs={CRS.Simple}
                            
-                        maxBounds={[[100, 100], [height-100, width-100]]}
+                        maxBounds={[[0+height/10, 0+width/10], [height-height/10, width-width/10]]}
                     >
                         <ImageOverlay
                             url="images/map.png"

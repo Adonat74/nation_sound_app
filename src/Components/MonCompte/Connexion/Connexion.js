@@ -84,7 +84,7 @@ export default function Connexion () {
                         () => (
                             <Form className="connexionForm" >
                                 <label htmlFor="email">Email :</label>
-                                <Field name="email" type="email" id="email"/>
+                                <Field name="email" type="email" id="email" autofocus/>
 
                                 <label htmlFor="password">Mot de passe :</label>
                                 <Field name="password" type="password" id="password"/>

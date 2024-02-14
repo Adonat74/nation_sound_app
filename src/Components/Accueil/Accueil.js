@@ -77,13 +77,13 @@ export default function Accueil () {
             ) : (
                 <div className="accueil">
                     <h1>Accueil</h1>
-                    <Link to="/paiement"><button className="billetterieButton">Billetterie<img src="/images/icons/arrow-right.svg" alt="flèche à droite" loading="lazy"></img></button></Link>
+                    <Link to="/paiement" className="billetterieButton">Billetterie<img src="/images/icons/arrow-right.svg" alt="flèche à droite" loading="lazy"></img></Link>
                     
                     <h2>Liste de tous les concerts</h2>
                     <section className="miniatureGridAccueil">
                             {artistesAccueil}
                     </section>
-                    <Link to="/programmation"><button className="billetterieButton">Programmation<img src="/images/icons/arrow-right.svg" alt="flèche à droite" loading="lazy"></img></button></Link>
+                    <Link to="/programmation" className="billetterieButton">Programmation<img src="/images/icons/arrow-right.svg" alt="flèche à droite" loading="lazy"></img></Link>
                     <Link to="/carte">
                         <section className="minimapContainer">
                             <img className="minimap" src="/images/minimap.png" alt="Miniature de la carte" loading="lazy"></img>

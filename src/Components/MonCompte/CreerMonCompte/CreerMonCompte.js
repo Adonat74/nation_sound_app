@@ -83,7 +83,7 @@ export default function CreerMonCompte () {
                                 <Form className="creerMonCompteForm">
 
                                     <label htmlFor="email">Email:</label>
-                                    <Field name="email" type="email" id="email"/>
+                                    <Field name="email" type="email" id="email" autofocus/>
                                     <ErrorMessage name="email" component="span" className="errorSpan"/>
 
                                     <label htmlFor="userName">Nom:</label>

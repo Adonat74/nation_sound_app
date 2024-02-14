@@ -82,14 +82,14 @@ export default function ModifierMonCompte () {
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
-                        onSubmit={handleSubmit}
+                        onSubmit={handleSubmit}  
                     >
                         {
                             (formik) => (
                                 <Form className="modifierMonCompteForm">
 
                                     <label htmlFor="email">Email:</label>
-                                    <Field name="email" type="email" id="email"/>
+                                    <Field name="email" type="email" id="email"  autofocus/>
                                     <ErrorMessage name="email" component="span" className="errorSpan"/>
 
                                     <label htmlFor="userName">Nom:</label>
