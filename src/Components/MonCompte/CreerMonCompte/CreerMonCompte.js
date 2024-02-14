@@ -112,9 +112,8 @@ export default function CreerMonCompte () {
                                         <option value="pop">Pop</option>
                                     </Field>
                                     {/*Disable le boutton si le formulaire n'est pas valide*/}
-                                    <button disabled={!formik.isValid}>Créer mon compte</button>
+                                    <button type="submit" disabled={!formik.isValid}>Créer mon compte</button>
                                 </Form>
-                                
                             )
                         }
                     </Formik>

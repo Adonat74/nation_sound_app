@@ -118,7 +118,7 @@ export default function ModifierMonCompte () {
                                         <option value="pop">Pop</option>
                                     </Field>
                                     {/*Disable le boutton si le formulaire n'est pas valide*/}
-                                    <button disabled={!formik.isValid}>Modifier mon compte</button>
+                                    <button type="submit" disabled={!formik.isValid}>Modifier mon compte</button>
                                 </Form>
                             )
                         }

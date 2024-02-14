@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { MapContainer, Marker, Popup, ImageOverlay } from 'react-leaflet';
 import { drupalAPI } from '../../api/axios';
@@ -10,7 +10,11 @@ import { Helmet } from 'react-helmet-async';
 
 export default function Carte () {
 
-    const bounds = new LatLngBounds([0, 0], [500, 1000]);
+    const windowSize = useRef([window.innerWidth, window.innerHeight]);
+    const width = windowSize.current[0];
+    const height = windowSize.current[1];
+
+    const bounds = new LatLngBounds([0, 0], [height, width]);
 
     const [catFilter, setCatFilter] = useState("");
     const [mapData, setMapData] = useState([]);
@@ -94,7 +98,7 @@ export default function Carte () {
 
         
         return (
-            <Marker position={[lat, lng]} icon={customIcon} key={data.id}>
+            <Marker position={[lat*height/500, lng*width/1000]} icon={customIcon} key={data.id}>
                 <Popup className="popup">
                     <Link to={category === "scene" ? `/programmation` : ""}>
                         <h2 className="popupTitle">{title}</h2>
@@ -145,11 +149,21 @@ export default function Carte () {
                         </select>
                     </div>
 
-                    <MapContainer center={[250, 500]} zoom={0} maxZoom={3} scrollWheelZoom={true} crs={CRS.Simple}>
+                    <MapContainer 
+                        center={[height/2, width/2]} 
+                        zoom={0} 
+                        maxZoom={3} 
+                        dragging={false}
+                        touchZoom={true}
+                        scrollWheelZoom={true} 
+                        crs={CRS.Simple}
+                           
+                        maxBounds={[[100, 100], [height-100, width-100]]}
+                    >
                         <ImageOverlay
                             url="images/map.png"
                             bounds={bounds}
-                            zIndex={10}                  
+                            zIndex={10}              
                         />
                         {markers}  
                     </MapContainer>
