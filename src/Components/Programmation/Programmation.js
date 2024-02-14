@@ -64,7 +64,7 @@ export default function Programmation () {
         return (
             <div className="artistContainer" key={data.id}>
                 <Link to={`/page-artiste/${title}`}>
-                    <img className="miniature" src={`${url}`} alt={`${title}`}></img>
+                    <img className="miniature" src={`${url}`} alt={`${title}`} loading="lazy"></img>
                     <div className="infoMiniature">
                         <h2>{title}</h2>
                         <p>Scène {scene}</p>

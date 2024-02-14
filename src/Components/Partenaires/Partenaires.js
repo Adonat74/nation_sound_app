@@ -41,7 +41,7 @@ export default function Partenaires () {
 
         return (
             <div className="partenaire" key={data.id}>
-                <img className="partenaire-logo" src={`${url}`} alt={`${title}`}></img>
+                <img className="partenaire-logo" src={`${url}`} alt={`${title}`} loading="lazy"></img>
                 <p className="partenaire-title">{title}</p>
             </div> 
         );

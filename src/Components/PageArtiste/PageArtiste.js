@@ -61,7 +61,7 @@ export default function PageArtiste () {
             ) : (
                 <div className="pageArtist">
                     <div className="pageArtistContainer">
-                        <img className="artistImage" src={`${url}`} alt={`${artistTitle}`}></img>
+                        <img className="artistImage" src={`${url}`} alt={`${artistTitle}`} loading="lazy"></img>
                         <section className="pageArtistText">
                             <h1 className="pageArtistTitle">{artistTitle}</h1>
                             <p>Scène {scene}</p>

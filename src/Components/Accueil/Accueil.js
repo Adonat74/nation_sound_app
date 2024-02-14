@@ -45,7 +45,7 @@ export default function Accueil () {
         return (
             <div className="artistContainerAccueil" key={data.id}>
                 <Link to={`/page-artiste/${title}`}>
-                    <img className="miniature" src={`${url}`} alt={`${title}`}></img>
+                    <img className="miniature" src={`${url}`} alt={`${title}`} loading="lazy"></img>
                     <div className="infoMiniatureAccueil">
                         <h3>{title}</h3>
                         <p>Jour {day} - {hour}H</p>
@@ -77,17 +77,17 @@ export default function Accueil () {
             ) : (
                 <div className="accueil">
                     <h1>Accueil</h1>
-                    <Link to="/paiement"><button className="billetterieButton">Billetterie<img src="/images/icons/arrow-right.svg" alt="flèche à droite"></img></button></Link>
+                    <Link to="/paiement"><button className="billetterieButton">Billetterie<img src="/images/icons/arrow-right.svg" alt="flèche à droite" loading="lazy"></img></button></Link>
                     
                     <h2>Liste de tous les concerts</h2>
                     <section className="miniatureGridAccueil">
                             {artistesAccueil}
                     </section>
-                    <Link to="/programmation"><button className="billetterieButton">Programmation<img src="/images/icons/arrow-right.svg" alt="flèche à droite"></img></button></Link>
+                    <Link to="/programmation"><button className="billetterieButton">Programmation<img src="/images/icons/arrow-right.svg" alt="flèche à droite" loading="lazy"></img></button></Link>
                     <Link to="/carte">
                         <section className="minimapContainer">
-                            <img className="minimap" src="/images/minimap.png" alt="Miniature de la carte"></img>
-                            <button className="mapButton">Carte<img src="/images/icons/arrow-right.svg" alt="flèche à droite"></img></button>
+                            <img className="minimap" src="/images/minimap.png" alt="Miniature de la carte" loading="lazy"></img>
+                            <button className="mapButton">Carte<img src="/images/icons/arrow-right.svg" alt="flèche à droite" loading="lazy"></img></button>
                         </section>
                     </Link>
                 </div>
