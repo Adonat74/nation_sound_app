@@ -73,8 +73,7 @@
 .burger {
     width: 75px;
     height: 75px;
-    margin-right: 25px;
-    margin-top: 20px;
+    margin: 20px 25px 0 0;
     background-color: transparent;
     border: none;
     cursor: pointer;
