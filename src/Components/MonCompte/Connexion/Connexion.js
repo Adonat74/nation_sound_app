@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"; 
+import { useState } from "react"; 
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { nodeAPI } from '../../../api/axios';
 import "./Connexion.css";
@@ -9,7 +9,7 @@ import DOMPurify from 'dompurify';
 import { Helmet } from 'react-helmet-async';
 
 
-const validationSchema = yup.object().shape({
+const formValidationSchema = yup.object().shape({
     email: yup.string().required("L'adresse email est obligatoire."),
     password: yup.string().required("Le mot de passe est obligatoire")
 });
@@ -20,16 +20,15 @@ export default function Connexion () {
     const { setAuth } = useAuth();
     const [errMsg, setErrMsg] = useState('');
 
+
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/mon-compte";
+    const from = location.state?.from?.pathname || "/mon-compte"; // Définition de la destination après la connexion 
 
-
-    const errRef = useRef();
     
    
 
-    const initialValues = {
+    const initialFormValues = {
         email: "",
         password: ""
     };
@@ -44,12 +43,15 @@ export default function Connexion () {
                     withCredentials: true 
                 }
             );
-            // Points d'interogation permettent de casser l'application si la structure des données attendues n'est pas la bonne'
+
+            // sanitize les données récupérées
             const token = DOMPurify.sanitize(response?.data?.token);
             const favoriteMusicGenre = DOMPurify.sanitize(response?.data?.data?.favoriteMusicGenre);
             const userName = DOMPurify.sanitize(response?.data?.data?.userName);
+
+            // Mise à jour de l'authentification avec les données de l'utilisateur
             setAuth({ ...formValues, userName, favoriteMusicGenre, token });
-            navigate(from, { replace: true });
+            navigate(from, { replace: true }); // Redirection vers la page précédente ou "/mon-compte"
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('Pas de réponse serveur');
@@ -67,32 +69,33 @@ export default function Connexion () {
 
     return(
         <div className="connexion">
+
+            {/* Permet de changer les title et description pour chaques composants */}
             <Helmet>
                 <title>Nation-Sound Festival - Connexion</title>
                 <meta name="title" content="Nation-Sound Festival - Connexion" />
                 <meta name="description" content="Connectez-vous à votre compte pour acheter des billets ou pour avoir des recommandations d'artistes personalisées." />
             </Helmet>
+
             <div className="connexionContainer">
-                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
+                <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
                 <h1 className="connexionTitle">Connexion</h1>
                 <Formik 
-                    initialValues={initialValues}
-                    validationSchema={validationSchema}
+                    initialValues={initialFormValues}
+                    validationSchema={formValidationSchema}
                     onSubmit={handleSubmit}
                 >
-                    {
-                        () => (
-                            <Form className="connexionForm" >
-                                <label htmlFor="email">Email :</label>
-                                <Field name="email" type="email" id="email" autofocus aria-label="Champ requis"/>
+                    {() => (
+                        <Form className="connexionForm" >
+                            <label htmlFor="email">Email :</label>
+                            <Field name="email" type="email" id="email" autofocus aria-label="Champ requis"/>
 
-                                <label htmlFor="password">Mot de passe :</label>
-                                <Field name="password" type="password" id="password" aria-label="Champ requis"/>
+                            <label htmlFor="password">Mot de passe :</label>
+                            <Field name="password" type="password" id="password" aria-label="Champ requis"/>
 
-                                <button type="submit">Se connecter</button>
-                            </Form>
-                        )
-                    }
+                            <button type="submit">Se connecter</button>
+                        </Form>
+                    )}
                 </Formik>
                 <h2>Pas de compte?</h2>
                 <Link to="/mon-compte/creer">Créer un compte</Link>

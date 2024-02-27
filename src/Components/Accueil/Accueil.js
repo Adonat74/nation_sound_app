@@ -8,25 +8,26 @@ import { Helmet } from 'react-helmet-async';
 export default function Accueil () {
 
     const [artistesDataAccueil, setArtistesDataAccueil] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); // État pour indiquer si les données sont en cours de chargement
+    const [error, setError] = useState(null); // État pour gérer les erreurs lors du chargement des données
 
 
-    // get data asynchronously
+    // Fetch des données des artistes depuis l'API Drupal
     useEffect(() => {
         async function getData () {
             try {
                 await drupalAPI.get(`/artistes`)
                     .then(res => setArtistesDataAccueil(res?.data?.data));
             } catch (error) {
-                setError(error);
+                setError(error); // En cas d'erreur, stocker l'erreur dans l'état correspondant
             } finally {
-                setIsLoading(false);
+                setIsLoading(false); // Mettre à jour l'état isLoading une fois le chargement terminé
             }
         }
         getData();     
     }, []);
-    
+
+    // get data--------------
     // useEffect(() => {
     //     drupalAPI.get(`/artistes`)
     //         .then(res => setArtistesDataAccueil(res?.data?.data));
@@ -35,7 +36,7 @@ export default function Accueil () {
 
     const artistesAccueil = artistesDataAccueil.map(data => {
 
-        // sanitize data that is rendered in the html tags
+        // Sanitization des données pour éviter les attaques XSS
         let title = DOMPurify.sanitize(data.attributes.title);
         let url = DOMPurify.sanitize(data.attributes.field_photo.uri);
         let day = DOMPurify.sanitize(data.attributes.field_day);
@@ -64,25 +65,27 @@ export default function Accueil () {
 
     return(
         <div>
+            {/* Permet de changer les title et description pour chaques composants */}
             <Helmet>
                 <title>Nation-Sound Festival - Accueil</title>
                 <meta name="title" content="Nation-Sound Festival - Accueil" />
                 <meta name="description" content="Nation-Sound est un festival de musique qui ce déroule à Paris. Les artistes et les genres de musique seront variés, electro, jazz, pop, rap, rock, reggae." />
             </Helmet>
-            {/* Affiche Loading... le temps que les artiste soient chargés */}
-            {isLoading ? (
-                <div className="loadingContainer">
-                    <div className="loading">Loading…</div>
-                </div>
-            ) : (
+            
                 <div className="accueil">
                     <h1>Accueil</h1>
                     <Link to="/paiement" className="billetterieButton">Billetterie<img src="/images/icons/arrow-right.svg" alt="flèche à droite" loading="lazy"></img></Link>
-                    
                     <h2>Liste de tous les concerts</h2>
-                    <section className="miniatureGridAccueil">
-                            {artistesAccueil}
-                    </section>
+                    {/* Affiche Loading... le temps que les artiste soient chargés */}
+                    {isLoading ? (
+                        <div className="loadingContainer">
+                            <div className="loading">Loading…</div>
+                        </div>
+                    ) : (
+                        <section className="miniatureGridAccueil">
+                                {artistesAccueil} {/* Affichage de la liste des artistes */}
+                        </section>
+                    )}
                     <Link to="/programmation" className="billetterieButton">Programmation<img src="/images/icons/arrow-right.svg" alt="flèche à droite" loading="lazy"></img></Link>
                     <Link to="/carte">
                         <section className="minimapContainer">
@@ -91,7 +94,6 @@ export default function Accueil () {
                         </section>
                     </Link>
                 </div>
-            )}
         </div> 
     )
 }

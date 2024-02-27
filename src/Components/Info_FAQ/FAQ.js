@@ -50,6 +50,7 @@ export default function FAQ () {
 
     return(
         <div>
+            {/* Permet de changer les title et description pour chaques composants */}
             <Helmet>
                 <title>Nation-Sound Festival - Foire Aux Questions</title>
                 <meta name="title" content="Nation-Sound Festival - Foire Aux Questions" />

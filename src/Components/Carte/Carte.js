@@ -14,6 +14,7 @@ export default function Carte () {
     const width = windowSize.current[0];
     const height = windowSize.current[1];
 
+    // Définition des limites de la carte
     const bounds = new LatLngBounds([0, 0], [height, width]);
 
     const [catFilter, setCatFilter] = useState("");
@@ -23,21 +24,28 @@ export default function Carte () {
     const [error, setError] = useState(null);
     
 
+    // Fonction de gestion du changement de catégorie
     function handleChangeCat (event) {
         setCatFilter(() => {
             return event.target.value
         });
     };
 
-
+    // Change les paramètres de filtre du fetch
     let catQuery = catFilter === "" ? "" : `?filter[field_categorie]=${catFilter}`;
 
-    // get data asynchronously
+    // Récupère les données de la carte et des artistes de façon asynchrone
     useEffect(() => {
         async function getData () {
             try {
+                // Récupération des données de la carte
                 await drupalAPI.get(`/lieux${catQuery}`)
                     .then(res => setMapData(res?.data?.data));
+
+                // Récupération des données des scènes
+                await drupalAPI.get(`/artistes`)
+                    .then(res => setSceneData(res?.data?.data));
+
             } catch (error) {
                 setError(error);
             } finally {
@@ -48,28 +56,13 @@ export default function Carte () {
     }, [catFilter, catQuery]);
 
 
-    // get data asynchronously
-    useEffect(() => {
-        async function getData () {
-            try {
-                await drupalAPI.get(`/artistes`)
-                    .then(res => setSceneData(res?.data?.data));
-            } catch (error) {
-                setError(error);
-            } finally {
-                setIsLoading(false);
-            }
-        }
-        getData();     
-    }, []);
-
     const markers = mapData.map(data => {
 
         const category = DOMPurify.sanitize(data.attributes.field_categorie);
+        const title = DOMPurify.sanitize(data.attributes.title);
+        const sceneNumber = title[title.length - 1];
 
-        const title = data.attributes.title;
-        const sceneNumber = DOMPurify.sanitize(title[title.length - 1]);
-
+        // customise les icons des balises
         const customIcon = new Icon({
             iconUrl: `/images/icons/pin-${category}.svg`,
             iconSize: [35, 35]
@@ -82,6 +75,7 @@ export default function Carte () {
             const titleSanitized = DOMPurify.sanitize(scene.attributes.title);
 
 
+            // Affiche les artiste dans le popup
             if (sceneSanitized === sceneNumber) {
                 return  (
                     <p key={scene.id}>
@@ -98,12 +92,16 @@ export default function Carte () {
 
         
         return (
+            // Les balises sont positionnés entre 0-500 et 0-1000 mais la hauteur et la largeur de la carte peuvent changer donc un produit en croix permet qu'elles restent au bon endroit
             <Marker position={[lat*height/500, lng*width/1000]} icon={customIcon} key={data.id}>
                 <Popup className="popup">
+                    {/* Si c'est une scène on redirige vers la page programmation au clic */}
                     <Link to={category === "scene" ? `/programmation` : ""}>
                         <h2 className="popupTitle">{title}</h2>
                         <div className="mapArtistes">
+                            {/* Si c'est une scnène on n'affiche rien sinon la description du lieu*/}
                             <p>{category === "scene" ? "" : descriptionLieu}</p>
+                            {/* Affiche la liste des artistes en fonction des scnènes */}
                             {scene}
                         </div>
                     </Link>
@@ -123,6 +121,7 @@ export default function Carte () {
 
     return(
         <div>
+            {/* Permet de changer les title et description pour chaques composants */}
             <Helmet>
                 <title>Nation-Sound Festival - Carte</title>
                 <meta name="title" content="Nation-Sound Festival - Carte" />
@@ -158,13 +157,15 @@ export default function Carte () {
                         scrollWheelZoom={true} 
                         crs={CRS.Simple}
                            
-                        maxBounds={[[0+height/10, 0+width/10], [height-height/10, width-width/10]]}
+                        maxBounds={[[height/10, width/10], [height-height/10, width-width/10]]}
                     >
+                        {/* Remplace la carte par une image */}
                         <ImageOverlay
                             url="images/map.png"
                             bounds={bounds}
                             zIndex={10}              
                         />
+                        {/* Affiche les balises */}
                         {markers}  
                     </MapContainer>
                 </div>

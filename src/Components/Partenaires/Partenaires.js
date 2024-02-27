@@ -56,6 +56,7 @@ export default function Partenaires () {
 
     return(
         <div>
+            {/* Permet de changer les title et description pour chaques composants */}
             <Helmet>
                 <title>Nation-Sound Festival - Partenaires</title>
                 <meta name="title" content="Nation-Sound Festival - Partenaires" />

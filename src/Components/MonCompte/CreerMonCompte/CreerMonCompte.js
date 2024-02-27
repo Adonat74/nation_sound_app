@@ -57,6 +57,7 @@ export default function CreerMonCompte () {
 
     return (
         <div className="creerMonCompte">
+            {/* Permet de changer les title et description pour chaques composants */}
             <Helmet>
                 <title>Nation-Sound Festival - Créer Un Compte</title>
                 <meta name="title" content="Nation-Sound Festival - Créer Un Compte" />

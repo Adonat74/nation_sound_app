@@ -13,9 +13,8 @@ import PageArtiste from "./Components/PageArtiste/PageArtiste";
 import FAQ from "./Components/Info_FAQ/FAQ";
 import Footer from "./Components/Header-Footer/Footer/Footer";
 import Missing from './Components/Missing/Missing'
-import Layout from './Components/Layout';
 import './App.css';
-import React from 'react';
+import { useState } from 'react';
 import RequireAuth from './Components/RequireAuth';
 import { Routes, Route, useLocation } from "react-router-dom";
 import Checkout from "./Components/Paypal/Checkout";
@@ -28,17 +27,17 @@ import { HelmetProvider } from 'react-helmet-async';
 
 export default function App() {
 
-  const [menuToggle, setMenuToggle] = React.useState(false);
-
-  
-
-  let location = useLocation();
+  const [menuToggle, setMenuToggle] = useState(false);
 
   function toggleMenu () {
     setMenuToggle(prevState => !prevState);
   }
+  
+
+  let location = useLocation();
 
 
+  // cache le menu burger si l'écran fait plus de 1024 pixels
   window.addEventListener("resize", () => {
     if (window.screen.width >= 1024) {
       setMenuToggle(false);
@@ -49,7 +48,7 @@ export default function App() {
 
 
   return (
-    <div className="Appli">
+    <main className="App">
       
       {/* permet d'éviter le problème rencontré avec le strict mode de react et helmet */}
       <HelmetProvider>
@@ -60,7 +59,6 @@ export default function App() {
 
         
         <Routes>
-          <Route path="/" element={<Layout />}>
             {menuToggle ? null : <Route path="/" element={<Accueil />} />}
             {menuToggle ? null : <Route path="/programmation" element={<Programmation />} />}
             {menuToggle ? null : <Route path="/carte" element={<Carte />} />}
@@ -82,16 +80,15 @@ export default function App() {
             {/* Si l'url n'existe pas */}
             {menuToggle ? null : <Route path="*" element={<Missing />} />}
 
-          </Route>
         </Routes>
         
-        
+        {/* permet le bon maintient du footer en bas de page */}
         <div className={menuToggle || location.pathname === "/carte" ? null : "space"}></div>
 
         {menuToggle || location.pathname === "/carte" ? null : <Footer />}
 
       </HelmetProvider>
-    </div>
+    </main>
   );
 }
 

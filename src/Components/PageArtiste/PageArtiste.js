@@ -48,6 +48,7 @@ export default function PageArtiste () {
 
     return(
         <div>
+            {/* Permet de changer les title et description pour chaques composants */}
             <Helmet>
                 <title>Nation-Sound Festival - {artistTitle}</title>
                 <meta name="title" content={`Nation-Sound Festival - ${artistTitle}`} />

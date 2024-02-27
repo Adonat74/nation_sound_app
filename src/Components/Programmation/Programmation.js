@@ -84,6 +84,7 @@ export default function Programmation () {
 
     return(
         <div>
+            {/* Permet de changer les title et description pour chaques composants */}
             <Helmet>
                 <title>Nation-Sound Festival - Programmation</title>
                 <meta name="title" content="Nation-Sound Festival - Programmation" />

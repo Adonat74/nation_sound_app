@@ -63,6 +63,7 @@ export default function ModifierMonCompte () {
 
     return (
         <div className="creerMonCompte">
+            {/* Permet de changer les title et description pour chaques composants */}
             <Helmet>
                 <title>Nation-Sound Festival - Modifier Mon Compte</title>
                 <meta name="title" content="Nation-Sound Festival - Modifier Mon Compte" />

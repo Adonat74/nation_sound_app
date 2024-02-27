@@ -18,6 +18,7 @@ export default function Checkout() {
 
   return (
     <div className="checkout">
+        {/* Permet de changer les title et description pour chaques composants */}
         <Helmet>
             <title>Nation-Sound Festival - Paiement</title>
             <meta name="title" content="Nation-Sound Festival - Paiement" />
