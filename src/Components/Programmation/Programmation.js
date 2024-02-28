@@ -8,21 +8,27 @@ import { Helmet } from 'react-helmet-async';
 
 export default function Programmation () {
 
+    //importe le context authProvider
     const { auth } = useAuth();
+
+    // États pour le jour sélectionné, la scène et les données des artistes
     const [daySelected, setDaySelected] = useState("1");
-    const [artistesData, setArtistesData] = useState([]);
     const [scene, setScene] = useState("");
+    const [artistesData, setArtistesData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    let genre = auth.favoriteMusicGenre;
+    // stock le genre musical préféré de l'utilisateur grace au context authProvider.
+    const genre = auth.favoriteMusicGenre;
 
+    // Fonction de prenant en charge le changement de jour
     function handleRadioChange (event) {
         setDaySelected(() => {
             return event.target.value
         });
     };
 
+    // Fonction de prenant en charge le changement de scène
     function handleChangeScene (event) {
         setScene(() => {
             return event.target.value
@@ -31,15 +37,17 @@ export default function Programmation () {
 
 
 
+    // variable contenant le paramêtre d'url pour filtrer ou non en fonction de la scène
     let sceneQuery = scene === "" ? "" : `&filter[field_scene]=${scene}`;
 
 
-    // get data asynchronously
+    // Fetch des données des artistes
     useEffect(() => {
         async function getData () {
             try {
                 await drupalAPI.get(`/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
                     .then(res => {
+                        // Trie les artistes en fonction du genre préféré par l'utilisateur et les faits apparaitre en premier.
                         let sorted = res?.data?.data.sort((x) => x.attributes.field_music_genre === genre ? -1 : 0);
                         setArtistesData(sorted);
                     });
@@ -53,7 +61,7 @@ export default function Programmation () {
     }, [daySelected, scene, sceneQuery, genre]);
 
 
-    
+    // Construction des composants d'artiste
     const artiste = artistesData.map(data => {
 
         let title = DOMPurify.sanitize(data.attributes.title);
