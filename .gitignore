@@ -1,5 +1,4 @@
 node_modules/
 /src/Paypal/
 /package-lock.json
-/package.json
 .vscode/
