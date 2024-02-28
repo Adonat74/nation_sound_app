@@ -58,6 +58,7 @@ npm start
 
 4. Open your web browser and navigate to `http://localhost:3000` to view the website.
 
+
 ## Technologies Used
 
    - React.js: JavaScript library for building user interfaces.
@@ -72,4 +73,4 @@ npm start
 
 ## Contributing
 
-Contributions to the Music Festival Website are welcome! If you have any ideas for new features, bug fixes, or improvements, please open an issue or submit a pull request.
+Contributions to the Nation-Sound Website are welcome! If you have any ideas for new features, bug fixes, or improvements, please open an issue or submit a pull request.
