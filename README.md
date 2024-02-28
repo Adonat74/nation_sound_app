@@ -33,23 +33,23 @@ git clone https://github.com/Adonat74/nation_sound_app.git
 2. Install dependencies:
 
 cd nation_sound_app
-npm install @testing-library/jest-dom
-            @testing-library/react
-            @testing-library/user-event
-            axios
-            dompurify
-            formik
-            leaflet
-            react
-            react-dom
-            react-helmet
-            react-helmet-async
-            react-leaflet
-            react-paypal-button-v2
-            react-router-dom
-            react-scripts
-            web-vitals
-            yup
+ * npm install @testing-library/jest-dom
+ * npm install @testing-library/react
+ * npm install @testing-library/user-event
+ * npm install axios
+ * npm install dompurify
+ * npm install formik
+ * npm install leaflet
+ * npm install react
+ * npm install react-dom
+ * npm install react-helmet
+ * npm install react-helmet-async
+ * npm install react-leaflet
+ * npm install react-paypal-button-v2
+ * npm install react-router-dom
+ * npm install react-scripts
+ * npm install web-vitals
+ * npm install yup
 
 3. Start the development server:
 
