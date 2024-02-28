@@ -13,29 +13,25 @@ export default function Partenaires () {
     const [error, setError] = useState(null);
 
 
-    // get data asynchronously
+    // Fetch des données des partenaires depuis l'API Drupal de manière asynchrone
     useEffect(() => {
         async function getData () {
             try {
                 await drupalAPI.get(`/partners`)
                     .then(res => setPartenairesData(res?.data?.data));
             } catch (error) {
-                setError(error);
+                setError(error); // En cas d'erreur, stocker l'erreur dans l'état correspondant
             } finally {
-                setIsLoading(false);
+                setIsLoading(false); // Mettre à jour l'état isLoading une fois le chargement terminé
             }
         }
         getData();     
     }, []);
 
-    // useEffect(() => {
-    //     drupalAPI.get(`/partners`)
-    //         .then(res => setPartenairesData(res?.data?.data));
-    // }, []);
-
 
     const partenaires = partenairesData.map(data => {
 
+        // Sanitization des données
         let title = DOMPurify.sanitize(data.attributes.title);
         let url = DOMPurify.sanitize(data.attributes.field_partners_logo_url.uri);
 

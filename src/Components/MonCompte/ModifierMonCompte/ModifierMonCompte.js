@@ -1,4 +1,4 @@
-import { useRef, useState} from "react";
+import { useState} from "react";
 import { Link } from "react-router-dom";
 import { nodeAPI } from '../../../api/axios';
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -7,7 +7,7 @@ import * as yup from "yup";
 import "./ModifierMonCompte.css";
 import { Helmet } from 'react-helmet-async';
 
-// chemin de validation yup //permet de valider le formulaire
+// chemin de validation yup, permet de valider le formulaire
 const validationSchema = yup.object().shape({
     email: yup.string().required("L'adresse email est obligatoire.").email("Veuillez renseigner une adresse email valide."),
     userName: yup.string().required("Le nom est obligatoire.").matches(/^[A-z][A-z0-9-_]{3,23}$/, "4 à 24 caractères. Doit commencer avec une lettre. Lettres, nombres, underscores, traits d'union autorisés. "),
@@ -18,10 +18,10 @@ const validationSchema = yup.object().shape({
 
 export default function ModifierMonCompte () { 
 
-    const { auth, setAuth } = useAuth();
+    const { auth, setAuth } = useAuth();  // Utilisation du hook useAuth pour gérer l'authentification de l'utilisateur
 
-    const errRef = useRef();
     
+    // États pour la réussite de l'envoi du formulaire et les messages d'erreur
     const [success, setSuccess] = useState(false);
     const [errMsg, setErrMsg] = useState('');
 
@@ -35,7 +35,7 @@ export default function ModifierMonCompte () {
     };
 
 
-
+    
     const handleSubmit = async (formValues) => {
         try {
             await nodeAPI.put("/api/updateUser",
@@ -78,7 +78,7 @@ export default function ModifierMonCompte () {
              ) : (
                  <section className="modifierMonCompteContainer">
                     {/*message d'erreur en haut du formulaire*/}
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
+                    <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
                     <h1 className="modifierMonCompteTitle">Modifier vos informations</h1>
                     <Formik
                         initialValues={initialValues}
@@ -90,7 +90,7 @@ export default function ModifierMonCompte () {
                                 <Form className="modifierMonCompteForm">
 
                                     <label htmlFor="email">Email:</label>
-                                    <Field name="email" type="email" id="email"  autofocus aria-label="Champ requis"/>
+                                    <Field name="email" type="email" id="email"  autoFocus aria-label="Champ requis"/>
                                     <ErrorMessage name="email" component="span" className="errorSpan"/>
 
                                     <label htmlFor="userName">Nom:</label>

@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet-async';
 
 export default function ModifierMonCompte () {
 
-    const { auth, setAuth } = useAuth();
+    const { auth, setAuth } = useAuth();  // Utilisation du hook useAuth pour gérer l'authentification de l'utilisateur
 
     const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -27,7 +27,7 @@ export default function ModifierMonCompte () {
         setAuth({});
     }
 
-    function disconnect () {
+    function disconnectUser () {
         setAuth({});
     }
 
@@ -41,6 +41,7 @@ export default function ModifierMonCompte () {
                 <meta name="title" content="Nation-Sound Festival - Mon Compte" />
                 <meta name="description" content="Modifiez ou supprimez les informations de votre compte." />
             </Helmet>
+            {/* Opération ternaire permettant d'afficher un message de confirmation lors de la supréssion d'un utilisateur */}
             {confirmDelete ? (
                 <section className="monCompteContainer">
                     <h1>Êtes vous sûr de vouloir supprimer ce compte?</h1>
@@ -52,7 +53,7 @@ export default function ModifierMonCompte () {
                     <h1 className="connexionTitle ">mon compte</h1>
                     <Link className="monCompteButtons" to="/mon-compte/modifier">Modifier mon compte</Link>
                     <button onClick={confirmDeleteUser} className="monCompteButtons">Supprimer le compte</button>
-                    <button onClick={disconnect} className="monCompteButtons">Se déconnecter</button>
+                    <button onClick={disconnectUser} className="monCompteButtons">Se déconnecter</button>
                     <Link to="/paiement" className="monCompteButtons">Billetterie</Link>
                 </section>
             )} 

@@ -12,16 +12,16 @@ export default function FAQ () {
     const [error, setError] = useState(null);
 
 
-    // get data asynchronously
+    // Fetch des données de la FAQ depuis l'API Drupal de manière asynchrone
     useEffect(() => {
         async function getData () {
             try {
                 await drupalAPI.get(`/faq`)
                     .then(res => setFAQData(res?.data?.data));
             } catch (error) {
-                setError(error);
+                setError(error); // En cas d'erreur, stocker l'erreur dans l'état correspondant
             } finally {
-                setIsLoading(false);
+                setIsLoading(false); // Mettre à jour l'état isLoading une fois le chargement terminé
             }
         }
         getData();     
@@ -30,8 +30,9 @@ export default function FAQ () {
 
     const FAQ = FAQData.map(data => {
 
-        let title = DOMPurify.sanitize(data.attributes.title);
-        let response = DOMPurify.sanitize(data.attributes.field_reponse);
+        // Sanitization des données
+        const title = DOMPurify.sanitize(data.attributes.title);
+        const response = DOMPurify.sanitize(data.attributes.field_reponse);
 
         return (
             <div className="question" key={data.id}>

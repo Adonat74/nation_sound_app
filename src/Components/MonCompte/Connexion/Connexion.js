@@ -8,7 +8,7 @@ import useAuth from "../../../hooks/useAuth";
 import DOMPurify from 'dompurify';
 import { Helmet } from 'react-helmet-async';
 
-
+// chemin de validation yup, permet de valider le formulaire
 const formValidationSchema = yup.object().shape({
     email: yup.string().required("L'adresse email est obligatoire."),
     password: yup.string().required("Le mot de passe est obligatoire")
@@ -17,8 +17,8 @@ const formValidationSchema = yup.object().shape({
 
 export default function Connexion () {
 
-    const { setAuth } = useAuth();
-    const [errMsg, setErrMsg] = useState('');
+    const { setAuth } = useAuth(); // Utilisation du hook useAuth pour gérer l'authentification de l'utilisateur
+    const [errMsg, setErrMsg] = useState(''); // État pour stocker les messages d'erreur de connexion
 
 
     const navigate = useNavigate();
@@ -28,6 +28,7 @@ export default function Connexion () {
     
    
 
+    //valeurs initiales des inputs
     const initialFormValues = {
         email: "",
         password: ""
@@ -77,7 +78,7 @@ export default function Connexion () {
                 <meta name="description" content="Connectez-vous à votre compte pour acheter des billets ou pour avoir des recommandations d'artistes personalisées." />
             </Helmet>
 
-            <div className="connexionContainer">
+            <section className="connexionContainer">
                 <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
                 <h1 className="connexionTitle">Connexion</h1>
                 <Formik 
@@ -88,7 +89,7 @@ export default function Connexion () {
                     {() => (
                         <Form className="connexionForm" >
                             <label htmlFor="email">Email :</label>
-                            <Field name="email" type="email" id="email" autofocus aria-label="Champ requis"/>
+                            <Field name="email" type="email" id="email" autoFocus aria-label="Champ requis"/>
 
                             <label htmlFor="password">Mot de passe :</label>
                             <Field name="password" type="password" id="password" aria-label="Champ requis"/>
@@ -99,7 +100,7 @@ export default function Connexion () {
                 </Formik>
                 <h2>Pas de compte?</h2>
                 <Link to="/mon-compte/creer">Créer un compte</Link>
-            </div>
+            </section>
         </div>
     );
 }

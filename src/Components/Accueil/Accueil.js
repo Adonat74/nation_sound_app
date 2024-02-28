@@ -12,7 +12,7 @@ export default function Accueil () {
     const [error, setError] = useState(null); // État pour gérer les erreurs lors du chargement des données
 
 
-    // Fetch des données des artistes depuis l'API Drupal
+    // Fetch des données des artistes depuis l'API Drupal de manière asynchrone
     useEffect(() => {
         async function getData () {
             try {
@@ -36,12 +36,12 @@ export default function Accueil () {
 
     const artistesAccueil = artistesDataAccueil.map(data => {
 
-        // Sanitization des données pour éviter les attaques XSS
-        let title = DOMPurify.sanitize(data.attributes.title);
-        let url = DOMPurify.sanitize(data.attributes.field_photo.uri);
-        let day = DOMPurify.sanitize(data.attributes.field_day);
-        let hour = DOMPurify.sanitize(data.attributes.field_heure);
-        let scene = DOMPurify.sanitize(data.attributes.field_scene);
+        // Sanitization des données
+        const title = DOMPurify.sanitize(data.attributes.title);
+        const url = DOMPurify.sanitize(data.attributes.field_photo.uri);
+        const day = DOMPurify.sanitize(data.attributes.field_day);
+        const hour = DOMPurify.sanitize(data.attributes.field_heure);
+        const scene = DOMPurify.sanitize(data.attributes.field_scene);
 
         return (
             <div className="artistContainerAccueil" key={data.id}>

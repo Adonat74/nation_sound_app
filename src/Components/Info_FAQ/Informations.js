@@ -11,16 +11,16 @@ export default function Informations () {
     const [error, setError] = useState(null);
 
 
-    // get data asynchronously
+    // Fetch des données des Informations depuis l'API Drupal de manière asynchrone
     useEffect(() => {
         async function getData () {
             try {
                 await drupalAPI.get(`/informations`)
                     .then(res => setInformationsData(res?.data?.data));
             } catch (error) {
-                setError(error);
+                setError(error); // En cas d'erreur, stocker l'erreur dans l'état correspondant
             } finally {
-                setIsLoading(false);
+                setIsLoading(false); // Mettre à jour l'état isLoading une fois le chargement terminé
             }
         }
         getData();     
@@ -29,8 +29,9 @@ export default function Informations () {
 
     const informations = informationsData.map(data => {
 
-        let title = DOMPurify.sanitize(data.attributes.title);
-        let information = DOMPurify.sanitize(data.attributes.field_description_information);
+        // Sanitization des données
+        const title = DOMPurify.sanitize(data.attributes.title);
+        const information = DOMPurify.sanitize(data.attributes.field_description_information);
 
         return (
             <div className="information" key={data.id}>
