@@ -1,4 +1,5 @@
-.checkout {
+.paypal {
+    margin-top: 100px;
     margin-top: 20px;
     width: 100%;
     display: flex;
@@ -8,22 +9,7 @@
     color: white;
 }
 
-.numberTicketSelect {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.5rem;
-}
-
-.numberTicketSelect > h1 {
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-    text-shadow: rgb(27, 20, 100) 3px 3px;
-    margin-bottom: 0;
-}
-
 .paypalContainer {
-    text-align: center;
     width: 300px;
 }
 
@@ -38,10 +24,8 @@
         width: 400px;
     }
 }
-
 @media screen and (min-width: 1024px) { 
     .paypalContainer {
         width: 500px;
     }
 }
-
