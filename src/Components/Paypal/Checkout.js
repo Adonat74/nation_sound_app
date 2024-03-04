@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PayPalButton } from 'react-paypal-button-v2';// Package permettant l'utilisation simplifiée de paypal
+// import { PayPalButton } from 'react-paypal-button-v2';// Package permettant l'utilisation simplifiée de paypal
 import { Helmet } from 'react-helmet-async';
 import './Checkout.css'
 
@@ -34,7 +34,7 @@ export default function Checkout() {
             </div>
             <p>Total : € {price}</p>
         </div>
-        <div className="paypalContainer">
+        {/* <div className="paypalContainer">
             <h2>Règlement :</h2>
             <PayPalButton
                 amount={price}
@@ -46,7 +46,7 @@ export default function Checkout() {
                   clientId: 'AcXDOsYzLskTO4VmEVLsRkbq3SGV2yhs4s8BTlBC7ar9iJGhHGrxj88m4MIvUo7Gx3SnxonogODiSJw6',
                 }}
             />
-        </div>
+        </div> */}
     </div>
   );
 }
