@@ -9,6 +9,13 @@
     color: white;
 }
 
+.numberTicketSelect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
 .paypalContainer {
     width: 300px;
 }

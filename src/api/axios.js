@@ -4,7 +4,7 @@ import axios from 'axios';
 // instances que l'on peut appeler à chaque fois que l'on en a besoin dans le code
 
 const nodeAPI = axios.create({
-    baseURL: 'http://localhost:3001'
+    baseURL: 'https://nation-sound-api.onrender.com'
 });
 
 const drupalAPI = axios.create({
