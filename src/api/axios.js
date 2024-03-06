@@ -8,7 +8,7 @@ const nodeAPI = axios.create({
 });
 
 const drupalAPI = axios.create({
-    baseURL: 'http://nation-sound.infinityfreeapp.com/jsonapi/node'
+    baseURL: 'https://nation-sound.infinityfreeapp.com/jsonapi/node'
 });
 
 
