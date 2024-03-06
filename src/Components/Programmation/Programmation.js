@@ -45,7 +45,7 @@ export default function Programmation () {
     useEffect(() => {
         async function getData () {
             try {
-                await drupalAPI.get(`/artistes?sort=field_heure&filter[field_day]=${daySelected}${sceneQuery}`)
+                await drupalAPI.get(`/artistes?sort=field_hour&filter[field_day]=${daySelected}${sceneQuery}`)
                     .then(res => {
                         // Trie les artistes en fonction du genre préféré par l'utilisateur et les faits apparaitre en premier.
                         let sorted = res?.data?.data.sort((x) => x.attributes.field_music_genre === genre ? -1 : 0);
@@ -66,7 +66,7 @@ export default function Programmation () {
 
         let title = DOMPurify.sanitize(data.attributes.title);
         let url = DOMPurify.sanitize(data.attributes.field_photo.uri);
-        let hour = DOMPurify.sanitize(data.attributes.field_heure);
+        let hour = DOMPurify.sanitize(data.attributes.field_hour);
         let scene = DOMPurify.sanitize(data.attributes.field_scene);
 
         return (

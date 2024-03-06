@@ -40,7 +40,7 @@ export default function Accueil () {
         const title = DOMPurify.sanitize(data.attributes.title);
         const url = DOMPurify.sanitize(data.attributes.field_photo.uri);
         const day = DOMPurify.sanitize(data.attributes.field_day);
-        const hour = DOMPurify.sanitize(data.attributes.field_heure);
+        const hour = DOMPurify.sanitize(data.attributes.field_hour);
         const scene = DOMPurify.sanitize(data.attributes.field_scene);
 
         return (
